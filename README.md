@@ -1,4 +1,4 @@
-# project-2-27
+# Civic Connect
 project-2-27 created by GitHub Classroom
 
 Core Use Case: Users login to a system to generate email/letter templates for contacting their representatives about particular issues.
