@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'main_page.apps.MainPageConfig', #criticial for finding the templates
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
