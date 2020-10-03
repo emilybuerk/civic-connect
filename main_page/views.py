@@ -13,13 +13,25 @@ class HomeView(generic.ListView):
     def get_queryset(self):#what does this do again???
         return None
 
+
+class LoginView(generic.TemplateView):
+    template_name = "main_page/login.html"
+    def get_queryset(self):#what does this do again???
+        return None
+
+
 def home(request):
     template = loader.get_template('main_page/home_view.html')
     context = {}
     return HttpResponse(template.render(context, request))
 
+
+""" 
+Legacy Code
+
 def login(request):
-    return HttpResponse("This is login page")
+    return generic.TemplateView.as_view(template_name="")
+"""
 
 def email(request):
     return HttpResponse("This is email page")
