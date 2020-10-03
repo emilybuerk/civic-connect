@@ -16,7 +16,7 @@ class HomeView(generic.ListView):
 
 class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
-    def get_queryset(self):#what does this do again???
+    def get_queryset(self):
         return None
 
 
