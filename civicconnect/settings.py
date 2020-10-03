@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Google Login Stuff
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.aut.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
