@@ -18,7 +18,6 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="civicconnect/index.html")),
     path('admin/', admin.site.urls),
     path('civicconnect/', include('main_page.urls')),
     path('accounts/', include('allauth.urls'))
