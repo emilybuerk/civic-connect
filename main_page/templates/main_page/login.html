@@ -7,10 +7,10 @@
     <body>
         <h1>Login</h1>
         {% if user.is_authenticated %}
-        <p>Welcome, {{ user.username }} !</p>
+        <p>Welcome, {{ user.username }}!</p>
 
         {% else %}
-        <a href="{ %provider_login_url "google" %}">Login with Google</a>
+        <a href="{% provider_login_url 'google' %}">Login with Google</a>
         {% endif %}
 
     </body>
