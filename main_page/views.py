@@ -26,6 +26,9 @@ def home(request):
     return HttpResponse(template.render(context, request))
 
 
+# Redirect landing page to civcconnect
+def landing_page(request):
+    return HttpResponseRedirect('/civicconnect/')
 """ 
 Legacy Code
 
