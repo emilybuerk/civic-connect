@@ -19,4 +19,5 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('civicconnect/', include('main_page.urls')),
+    path('civicconnect/email/', include('email_sys.urls')),
 ]
