@@ -1,0 +1,8 @@
+.login-icon {
+	width: 1.5em;
+	height: 1.5em;
+}
+
+a > label {
+	cursor: pointer;
+}
