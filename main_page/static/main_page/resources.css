@@ -2,3 +2,7 @@
 	background-color: #ccccdd;
 	padding: 4px;
 }
+
+.issue-header > h2 {
+	padding-left: 2em;
+}
