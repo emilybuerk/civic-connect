@@ -41,6 +41,7 @@ class Resource(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     submitter = models.ForeignKey(auth_models.User, on_delete=models.CASCADE)
+    anonymous = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -52,3 +53,9 @@ class Resource(models.Model):
     def user_resource(self):
         """ Checks if the resource was submitted by a site user (rather than an admin) """
         return not self.submitter.is_staff
+
+    def get_submitter(self):
+        """ Returns either the username of the submitter or 'Anonymous User' depending on the submitter's preferences """
+        if self.anonymous:
+            return 'Anonymous User'
+        return self.submitter.username

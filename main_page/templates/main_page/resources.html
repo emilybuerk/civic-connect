@@ -13,13 +13,17 @@
     {% include 'main_page/navbar.html' %}
     {% for issue in issue_list %}
         {% if issue.has_resources %}
-            <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.uppper }}></div>
+            <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.uppper }}</div>
+            <ul>
             {% for resource in issue.active_resources %}
-                <a href="{{ resource.url }}">{{ resource.title }}</a>
-                {% if resource.user_resource %}
-                    <h5>< - Submitted by {{ resource.submitter.username }}</h5>
-                {% endif %}
+                <li>
+                    <a href="{{ resource.url }}">{{ resource.title }}</a>
+                    {% if resource.user_resource %}
+                        <h5>< - Submitted by {{ resource.get_submitter }}</h5>
+                    {% endif %}
+                </li>
             {% endfor %}
+            </ul>
         {% endif %}
     {% endfor %}
 </body>
