@@ -21,6 +21,14 @@ class Issue(models.Model):
                 return True
         return False
 
+    def active_resources(self):
+        """ Returns a list of all the resources that are currently active """
+        resources = []
+        for resource in self.resource_set.all():
+            if resource.active():
+                resources.append(resource)
+        return resources
+
 
 class Resource(models.Model):
     STATUS_CHOICES = [
@@ -43,4 +51,4 @@ class Resource(models.Model):
 
     def user_resource(self):
         """ Checks if the resource was submitted by a site user (rather than an admin) """
-        return self.submitter.is_staff
+        return not self.submitter.is_staff
