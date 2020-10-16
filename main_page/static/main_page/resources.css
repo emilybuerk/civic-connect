@@ -3,6 +3,7 @@
 	padding: 4px;
 }
 
-.issue-header > h2 {
-	padding-left: 2em;
+h5 {
+	font-size: 0.3em;
+	text-indent: 10px;
 }
