@@ -17,7 +17,7 @@
             <ul>
             {% for resource in issue.active_resources %}
                 <li>
-                    <a href="{{ resource.url }}">{{ resource.title }}</a>
+                    <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
                     {% if resource.user_resource %}
                         <h5>- Submitted by {{ resource.get_submitter }}</h5>
                     {% endif %}
