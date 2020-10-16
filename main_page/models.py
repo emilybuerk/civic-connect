@@ -27,6 +27,7 @@ class Issue(models.Model):
         for resource in self.resource_set.all():
             if resource.active():
                 resources.append(resource)
+        resources.sort(key=lambda x: x.title)
         return resources
 
 
