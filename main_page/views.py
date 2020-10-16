@@ -6,6 +6,8 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
+from .models import Issue
+
 # Create your views here.
 
 
@@ -20,8 +22,13 @@ class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
 
 
-class ResourceView(generic.TemplateView):
+class ResourceView(generic.ListView):
     template_name = 'main_page/resources.html'
+    context_object_name = 'issue_list'
+
+    def get_queryset(self):
+        """ Return a list of all the issues that have resources """
+        return Issue.objects.all()
 
 
 def home(request):

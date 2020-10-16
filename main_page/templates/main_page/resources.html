@@ -10,6 +10,8 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
-    {% block content %}{% endblock %}
+    {% for issue in issue_list %}
+        <div id="{{ issue.name }}">{{ issue.name.upper }}</div>
+    {% endfor %}
 </body>
 </html>
