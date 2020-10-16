@@ -8,16 +8,20 @@ from django.utils import timezone
 
 # Create your views here.
 
+
 class HomeView(generic.ListView):
     template_name = 'main_page/home_view.html'
-    def get_queryset(self):#what does this do again???
+
+    def get_queryset(self):  # what does this do again???
         return None
 
 
 class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
-    def get_queryset(self):
-        return None
+
+
+class ResourceView(generic.TemplateView):
+    template_name = 'main_page/resources.html'
 
 
 def home(request):
@@ -29,12 +33,7 @@ def home(request):
 # Redirect landing page to civcconnect
 def landing_page(request):
     return HttpResponseRedirect('/civicconnect/')
-""" 
-Legacy Code
 
-def login(request):
-    return generic.TemplateView.as_view(template_name="")
-"""
 
 def email(request):
     return HttpResponse("This is email page")
