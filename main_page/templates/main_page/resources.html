@@ -7,11 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Resources - Civic Connect</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
     {% for issue in issue_list %}
-        <div id="{{ issue.name }}">{{ issue.name.upper }}</div>
+        {% if issue.has_resources %}
+            <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
+        {% endif %}
     {% endfor %}
 </body>
 </html>
