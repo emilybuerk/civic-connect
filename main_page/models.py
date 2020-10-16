@@ -10,6 +10,17 @@ class Issue(models.Model):
     def __str__(self):
         return self.name
 
+    def id_name(self):
+        """ Returns a version of the name used for HTML id tags"""
+        return self.name.lower().replace(' ', '-')
+    
+    def has_resources(self):
+        """ Checks if the issue has any active resources attached to it"""
+        for resource in self.resource_set.all():
+            if resource.status == 'A':
+                return True
+        return False
+
 
 class Resource(models.Model):
     STATUS_CHOICES = [
