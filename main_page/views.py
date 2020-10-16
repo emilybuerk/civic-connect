@@ -28,7 +28,9 @@ class ResourceView(generic.ListView):
 
     def get_queryset(self):
         """ Return a list of all the issues that have resources """
-        issue_list = Issue.objects.all()
+        issue_list = []
+        for issue in Issue.objects.all():
+            issue_list.append(issue)
         issue_list.sort(key=lambda x: x.name)
         return issue_list
 
