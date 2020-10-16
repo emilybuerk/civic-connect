@@ -36,3 +36,11 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.title
+
+    def active(self):
+        """ Checks if the resource has been approved """
+        return self.status == 'A'
+
+    def user_resource(self):
+        """ Checks if the resource was submitted by a site user (rather than an admin) """
+        return self.submitter.is_staff
