@@ -15,7 +15,7 @@
         {% if issue.has_resources %}
             <div id="{{ issue.id_name }}" class="issue-header">
                 <h2>{{ issue.name }}</h2>
-                {% for resource in issue.resource_set %}
+                {% for resource in issue.resource_set.all %}
                     {% if resource.active %}
                         <a href="{{ resource.url }}">{{ resource.title }}</a>
                         {% if resource.user_resource %}
