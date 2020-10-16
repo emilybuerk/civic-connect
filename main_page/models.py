@@ -7,6 +7,9 @@ from django.contrib.auth import models as auth_models
 class Issue(models.Model):
     name = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.name
+
 
 class Resource(models.Model):
     STATUS_CHOICES = [
@@ -19,3 +22,6 @@ class Resource(models.Model):
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     submitter = models.ForeignKey(auth_models.User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
