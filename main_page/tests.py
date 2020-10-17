@@ -376,3 +376,273 @@ class IssueModelTests(TestCase):
         actual = issue.active_resources()
         for i in range(len(actual)):
             self.assertEqual(actual[i].title, expected[i], message)
+
+
+class ResourceModelTests(TestCase):
+
+    # 1. active() tests
+
+    def test_active_approved(self):
+        """
+        active() returns True when the resource is approved
+        """
+        # Inputs
+        resource_name = "Approved Resource"
+        status = 'A'
+
+        # Expected Outputs
+        active = True
+
+        # Failure Message
+        message = "Failed active() with approved resource"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        ANONYMOUS = False
+
+        # Build model
+        User(username="TestUser").save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=status, submitter_id=SUBMITTER_ID, issue_id=1,
+                     anonymous=ANONYMOUS)
+
+        # Assertions
+        self.assertIs(r.active(), active, message)
+
+    def test_active_pending_approval(self):
+        """
+        active() returns True when the resource is approved
+        """
+        # Inputs
+        resource_name = "Resource Pending Approval"
+        status = 'P'
+
+        # Expected Outputs
+        active = False
+
+        # Failure Message
+        message = "Failed active() with resource pending approval"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        ANONYMOUS = False
+
+        # Build model
+        User(username="TestUser").save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=status, submitter_id=SUBMITTER_ID, issue_id=1,
+                     anonymous=ANONYMOUS)
+
+        # Assertions
+        self.assertIs(r.active(), active, message)
+
+    def test_active_rejected(self):
+        """
+        active() returns True when the resource is approved
+        """
+        # Inputs
+        resource_name = "Rejected Resource"
+        status = 'R'
+
+        # Expected Outputs
+        active = False
+
+        # Failure Message
+        message = "Failed active() with rejected resource"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        ANONYMOUS = False
+
+        # Build model
+        User(username="TestUser").save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=status, submitter_id=SUBMITTER_ID, issue_id=1,
+                     anonymous=ANONYMOUS)
+
+        # Assertions
+        self.assertIs(r.active(), active, message)
+
+    # 2. user_resource() tests
+
+    def test_user_resource_admin(self):
+        """
+        user_resource() returns True when the resource was submitted by a non-admin
+        """
+        # Inputs
+        resource_name = "Admin Resource"
+        admin_submitter = True
+        status = 'A'
+
+        # Expected Outputs
+        user_resource = False
+
+        # Failure Message
+        message = "Failed user_resource() with approved admin resource"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        ISSUE_ID = 1
+        ANONYMOUS = False
+
+        # Build model
+        User(username="TestUser", is_staff=admin_submitter).save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=status, submitter_id=SUBMITTER_ID, issue_id=ISSUE_ID,
+                     anonymous=ANONYMOUS)
+
+        # Assertions
+        self.assertIs(r.user_resource(), user_resource, message)
+
+    def test_user_resource_user(self):
+        """
+        user_resource() returns True when the resource was submitted by a non-admin
+        """
+        # Inputs
+        resource_name = "User Resource"
+        admin_submitter = False
+        status = 'A'
+
+        # Expected Outputs
+        user_resource = True
+
+        # Failure Message
+        message = "Failed user_resource() with approved user resource"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        ISSUE_ID = 1
+        ANONYMOUS = False
+
+        # Build model
+        User(username="TestUser", is_staff=admin_submitter).save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=status, submitter_id=SUBMITTER_ID, issue_id=ISSUE_ID,
+                     anonymous=ANONYMOUS)
+
+        # Assertions
+        self.assertIs(r.user_resource(), user_resource, message)
+
+    def test_user_resource_unapproved_user(self):
+        """
+        user_resource() returns True when the resource was submitted by a non-admin
+        """
+        # Inputs
+        resource_name = "Unapproved Resource"
+        admin_submitter = False
+        status = 'P'
+
+        # Expected Outputs
+        user_resource = True
+
+        # Failure Message
+        message = "Failed user_resource() with unapproved user resource"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        ISSUE_ID = 1
+        ANONYMOUS = False
+
+        # Build model
+        User(username="TestUser", is_staff=admin_submitter).save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=status, submitter_id=SUBMITTER_ID, issue_id=ISSUE_ID,
+                     anonymous=ANONYMOUS)
+
+        # Assertions
+        self.assertIs(r.user_resource(), user_resource, message)
+
+    # 3. get_submitter() tests
+
+    def test_get_submitter_standard(self):
+        """
+        get_submitter() returns either the username of the submitter or 'Anonymous User'
+        """
+        # Inputs
+        resource_name = "Standard Resource"
+        submitter_name = "JimRyan"
+        anonymous = False
+
+        # Expected Outputs
+        returned_name = "JimRyan"
+
+        # Failure Message
+        message = "Failed get_submitter() with input 'JimRyan'"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        STATUS = 'A'
+
+        # Build model
+        User(username=submitter_name).save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=STATUS, submitter_id=SUBMITTER_ID, issue_id=1,
+                     anonymous=anonymous)
+
+        # Assertions
+        self.assertEqual(r.get_submitter(), returned_name, message)
+
+    def test_get_submitter_spaces(self):
+        """
+        get_submitter() returns either the username of the submitter or 'Anonymous User'
+        """
+        # Inputs
+        resource_name = "Standard Resource"
+        submitter_name = "Jim E. Ryan"
+        anonymous = False
+
+        # Expected Outputs
+        returned_name = "Jim E. Ryan"
+
+        # Failure Message
+        message = "Failed get_submitter() with spaces and punctuation in name"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        STATUS = 'A'
+
+        # Build model
+        User(username=submitter_name).save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=STATUS, submitter_id=SUBMITTER_ID, issue_id=1,
+                     anonymous=anonymous)
+
+        # Assertions
+        self.assertEqual(r.get_submitter(), returned_name, message)
+
+    def test_get_submitter_anonymous(self):
+        """
+        get_submitter() returns either the username of the submitter or 'Anonymous User'
+        """
+        # Inputs
+        resource_name = "Standard Resource"
+        submitter_name = "JimRyan"
+        anonymous = True
+
+        # Expected Outputs
+        returned_name = "Anonymous User"
+
+        # Failure Message
+        message = "Failed get_submitter() with anonymous user input"
+
+        # Extra constants
+        URL = 'sample/url'
+        SUBMITTER_ID = 1
+        STATUS = 'A'
+
+        # Build model
+        User(username=submitter_name).save()  # create a test submitter
+        Issue(name="TestIssue").save()  # create a test issue
+        r = Resource(title=resource_name, url=URL, status=STATUS, submitter_id=SUBMITTER_ID, issue_id=1,
+                     anonymous=anonymous)
+
+        # Assertions
+        self.assertEqual(r.get_submitter(), returned_name, message)
