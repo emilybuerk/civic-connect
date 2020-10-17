@@ -1,0 +1,13 @@
+<html>
+<main class="flex-fill">
+    <div class="container">
+      <h1>Preview of Email:</h1>
+        {%if template.id%}
+            <p class="text-justify">{template.id.title}</p>
+            <p class="text-justify">{template.id.body}</p>
+        {% else %}
+            <p>Error: No template</p>
+        {% endif %}
+    </div>
+</main>
+</html>

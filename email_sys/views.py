@@ -20,7 +20,7 @@ def scratch(request):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.save()
-            return redirect('/preview')
+            return HttpResponseRedirect(reverse('email_sys:preview', args=(template.id,)))
     else:
         form = ScratchForm()
         context = {
@@ -36,7 +36,7 @@ def from_template(request, template_id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.save()
-            return redirect('/preview')
+            return HttpResponseRedirect(reverse('email_sys:preview', args=(template.id,)))
     else:
         form = TemplateForm(name_placeholder=template.title, body_placeholder=template.body)
         context = {
