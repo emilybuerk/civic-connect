@@ -56,7 +56,8 @@ class Resource(models.Model):
         return not self.submitter.is_staff
 
     def get_submitter(self):
-        """ Returns either the username of the submitter or 'Anonymous User' depending on the submitter's preferences """
+        """ Returns either the username of the submitter or 'Anonymous User' 
+        depending on the submitter's preferences """
         if self.anonymous:
             return 'Anonymous User'
         return self.submitter.username
