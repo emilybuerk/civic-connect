@@ -6,18 +6,33 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
+from .models import Issue
+
 # Create your views here.
+
 
 class HomeView(generic.ListView):
     template_name = 'main_page/home_view.html'
-    def get_queryset(self):#what does this do again???
+
+    def get_queryset(self):  # what does this do again???
         return None
 
 
 class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
+
+
+class ResourceView(generic.ListView):
+    template_name = 'main_page/resources.html'
+    context_object_name = 'issue_list'
+
     def get_queryset(self):
-        return None
+        """ Return a list of all the issues that have resources """
+        issue_list = []
+        for issue in Issue.objects.all():
+            issue_list.append(issue)
+        issue_list.sort(key=lambda x: x.name)
+        return issue_list
 
 
 def home(request):
@@ -29,12 +44,7 @@ def home(request):
 # Redirect landing page to civcconnect
 def landing_page(request):
     return HttpResponseRedirect('/civicconnect/')
-""" 
-Legacy Code
 
-def login(request):
-    return generic.TemplateView.as_view(template_name="")
-"""
 
 def email(request):
     return HttpResponse("This is email page")
