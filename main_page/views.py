@@ -53,3 +53,13 @@ def landing_page(request):
 
 def email(request):
     return HttpResponse("This is email page")
+
+
+def submit_resource(request):
+    title = request.POST['title']
+    url = request.POST['url']
+    submitter_id = request.POST['submitter']
+    anonymous = request.POST['anonymous']
+    issue = Issue.objects.get(pk=request.POST['issue'])
+    issue.resource_set.create(title=title, url=url, status='A', submitter_id=submitter_id, anonymous=anonymous)
+    return HttpResponseRedirect(reverse('main_page:resources'))
