@@ -9,5 +9,6 @@ urlpatterns = [
     path('email/', views.email, name='email_page'),
     path('resources/', views.ResourceView.as_view(), name='resource_page'),
     path('resources/submit/', views.resource_submit_form, name='resource_submit_page'),
-    path('resources/submit/processing', views.submit_resource, name='resource_submission')
+    path('resources/submit/processing', views.submit_resource, name='resource_submission'),
+    path('resources/submit/thanks', views.resource_thanks, name='resource_thanks')
 ]
