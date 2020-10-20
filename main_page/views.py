@@ -78,7 +78,7 @@ def submit_resource(request):
             error = 'Please enter a url'
     except KeyError:
         error = 'Please enter a url'
-    if request.POST['issue'] < 1:
+    if int(request.POST['issue']) < 1:
         error = 'Please select an issue'
     submitter_id = request.POST['submitter']
     anonymous = False
