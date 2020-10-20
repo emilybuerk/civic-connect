@@ -1,7 +1,8 @@
 ﻿{% load socialaccount %}
 {% load static %}
 <!DOCTYPE html>
-{% if user is None %}
+{% if user %}
+{% else %}
 <!-- Redirect to login page if user is not logged in -->
 <script>
     window.location.replace("{% url 'main_page:login_page' %}")
