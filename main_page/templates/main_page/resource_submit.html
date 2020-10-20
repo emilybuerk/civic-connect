@@ -24,7 +24,7 @@
             {% endfor %}
         </select>
         <label for="submitAnonymous">Submit Resource Anonymously</label>
-        <input type="checkbox" name="anonymous" id ="submitAnonymous" value="False" />
+        <input type="checkbox" name="anonymous" id ="submitAnonymous" />
         <input type="hidden" name="submitter" value={{ user.id }} />
         <input type="submit" value="Submit" />
     </form>
