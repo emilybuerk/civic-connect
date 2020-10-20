@@ -64,4 +64,4 @@ def submit_resource(request):
         anonymous = True
     issue = Issue.objects.get(pk=request.POST['issue'])
     issue.resource_set.create(title=title, url=url, status='A', submitter_id=submitter_id, anonymous=anonymous)
-    return HttpResponseRedirect(reverse('main_page:resources'))
+    return HttpResponseRedirect(reverse('main_page:resource_page'))
