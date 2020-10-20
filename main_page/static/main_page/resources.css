@@ -8,3 +8,7 @@ h5 {
 	font-size: 1em;
 	text-indent: 10px;
 }
+
+#CreateResourceButton {
+	margin-left: 1em;
+}
