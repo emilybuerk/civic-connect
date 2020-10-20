@@ -21,21 +21,32 @@
     {% if error_message %}
     <p><strong>{{ error_message }}</strong></p>
     {% endif %}
+    <h2>Submit Resource</h2>
+    <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
     <form action="{% url 'main_page:resource_submission' %}" method="post">
         {% csrf_token %}
-        <label for="resourceTitle">Title</label>
-        <input type="text" name="title" id="resourceTitle" />
-        <label for="resourceUrl">Url</label>
-        <input type="text" name="url" id="resourceUrl" />
-        <select name="issue" id="resourceIssue">
-            {% for issue in issue_list %}
-            <option value={{ issue.id }}>{{ issue.name }}</option>
-            {% endfor %}
-        </select>
-        <label for="submitAnonymous">Submit Resource Anonymously</label>
-        <input type="checkbox" name="anonymous" id="submitAnonymous" />
+        <div class="form-group">
+            <label for="resourceTitle">Title</label>
+            <input type="text" name="title" id="resourceTitle" />
+        </div>
+        <div class="form-group">
+            <label for="resourceUrl">Url</label>
+            <input type="text" name="url" id="resourceUrl" />
+        </div>
+        <div class="form-group">
+            <label for="resourceIssue">Relevant Issue</label>
+            <select name="issue" id="resourceIssue">
+                {% for issue in issue_list %}
+                <option value={{ issue.id }}>{{ issue.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="submitAnonymous">Submit Resource Anonymously</label>
+            <input type="checkbox" name="anonymous" id="submitAnonymous" />
+        </div>
         <input type="hidden" name="submitter" value={{ user.id }} />
-        <input type="submit" value="Submit" />
+        <button type="submit" value="Submit" class="btn btn-primary" />
     </form>
 </body>
 </html>
