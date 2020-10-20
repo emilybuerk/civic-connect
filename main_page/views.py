@@ -61,10 +61,14 @@ def submit_resource(request):
     error = False
     try:
         title = request.POST['title']
+        if len(title) < 1:
+            error = 'Please enter a resource title'
     except KeyError:
         error = 'Please enter a resource title'
     try:
         url = request.POST['url']
+        if len(url) < 1:
+            error = 'Please enter a url'
     except KeyError:
         error = 'Please enter a url'
     submitter_id = request.POST['submitter']
