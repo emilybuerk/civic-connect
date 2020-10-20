@@ -1,6 +1,12 @@
 ﻿{% load socialaccount %}
 {% load static %}
 <!DOCTYPE html>
+{% if user is None %}
+<!-- Redirect to login page if user is not logged in -->
+<script>
+    window.location.replace("{% url 'main_page:login_page' %}")
+</script>
+{% endif %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,6 +18,9 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
+    {% if error %}
+    <p><strong>{{ error }}</strong></p>
+    {% endif %}
     <form action="{% url 'main_page:resource_submission' %}" method="post">
         {% csrf_token %}
         <label for="resourceTitle">Title</label>
@@ -20,11 +29,11 @@
         <input type="text" name="url" id="resourceUrl" />
         <select name="issue" id="resourceIssue">
             {% for issue in issue_list %}
-                <option value={{ issue.id }}>{{ issue.name }}</option>
+            <option value={{ issue.id }}>{{ issue.name }}</option>
             {% endfor %}
         </select>
         <label for="submitAnonymous">Submit Resource Anonymously</label>
-        <input type="checkbox" name="anonymous" id ="submitAnonymous" />
+        <input type="checkbox" name="anonymous" id="submitAnonymous" />
         <input type="hidden" name="submitter" value={{ user.id }} />
         <input type="submit" value="Submit" />
     </form>
