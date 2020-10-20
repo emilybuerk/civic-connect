@@ -56,6 +56,13 @@ def email(request):
     return HttpResponse("This is email page")
 
 
+def resource_thanks(request):
+    template_name = 'main_page/resource_thanks.html'
+    context = {}
+
+    return render(request, template_name, context)
+
+
 def submit_resource(request):
     # Get POST data
     error = False
