@@ -78,7 +78,7 @@ def submit_resource(request):
 
     # Error Handling
     if error:
-        return render(request, reverse('main_page:resource_submit_page'), {
+        return render(request, 'main_page/resource_submit.html', {
             'issue_list': Issue.objects.all(),
             'error_message': error
         })
