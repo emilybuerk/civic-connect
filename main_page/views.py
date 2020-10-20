@@ -93,4 +93,4 @@ def submit_resource(request):
     # Add resource database
     issue = Issue.objects.get(pk=request.POST['issue'])
     issue.resource_set.create(title=title, url=url, status='P', submitter_id=submitter_id, anonymous=anonymous)
-    return HttpResponseRedirect(reverse('main_page:resource_page'))
+    return HttpResponseRedirect(reverse('main_page:resource_thanks'))

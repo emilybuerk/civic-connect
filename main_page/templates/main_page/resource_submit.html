@@ -19,7 +19,7 @@
 <body>
     {% include 'main_page/navbar.html' %}
     {% if error_message %}
-    <p><strong>{{ error }}</strong></p>
+    <p><strong>{{ error_message }}</strong></p>
     {% endif %}
     <form action="{% url 'main_page:resource_submission' %}" method="post">
         {% csrf_token %}
