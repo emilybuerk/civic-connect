@@ -12,7 +12,7 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
-    <form action="{% url 'main_page:resouce_submission' %}" method="post">
+    <form action="{% url 'main_page:resource_submission' %}" method="post">
         {% csrf_token %}
         <label for="resourceTitle">Title</label>
         <input type="text" name="title" id="resourceTitle" />
@@ -25,6 +25,7 @@
         </select>
         <label for="submitAnonymous">Submit Resource Anonymously</label>
         <input type="checkbox" name="anonymous" id ="submitAnonymous" value="False" />
+        <input type="hidden" name="submitter" value={{ user.id }} />
         <input type="submit" value="Submit" />
     </form>
 </body>
