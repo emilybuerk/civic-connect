@@ -78,6 +78,8 @@ def submit_resource(request):
             error = 'Please enter a url'
     except KeyError:
         error = 'Please enter a url'
+    if request.POST['issue'] < 1:
+        error = 'Please select an issue'
     submitter_id = request.POST['submitter']
     anonymous = False
     if 'anonymous' in request.POST.keys():
@@ -91,6 +93,7 @@ def submit_resource(request):
         })
 
     # Add resource database
+
     issue = Issue.objects.get(pk=request.POST['issue'])
     issue.resource_set.create(title=title, url=url, status='P', submitter_id=submitter_id, anonymous=anonymous)
     return HttpResponseRedirect(reverse('main_page:resource_thanks'))

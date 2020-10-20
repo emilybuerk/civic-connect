@@ -37,13 +37,14 @@
             <div class="form-group">
                 <label for="resourceIssue">Relevant Issue</label>
                 <select name="issue" id="resourceIssue">
+                    <option value=0></option>
                     {% for issue in issue_list %}
                     <option value={{ issue.id }}>{{ issue.name }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="form-group">
-                <label for="submitAnonymous">Submit Resource Anonymously</label>
+                <label for="submitAnonymous" style="display: inline">Submit Resource Anonymously</label>
                 <input type="checkbox" name="anonymous" id="submitAnonymous" />
             </div>
             <input type="hidden" name="submitter" value={{ user.id }} />
