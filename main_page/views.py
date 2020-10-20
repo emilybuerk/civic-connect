@@ -32,12 +32,13 @@ class ResourceView(generic.ListView):
         return issue_list
 
 
-class ResourceSubmitView(generic.ListView):
+def resource_submit_form(request):
     template_name = 'main_page/resource_submit.html'
-    context_object_name = 'issue_list'
+    context = {
+        'issue_list': Issue.objects.all(),
+    }
 
-    def get_queryset(self):
-        return Issue.objects.all()
+    return render(request, template_name, context)
 
 
 def home(request):
@@ -56,12 +57,29 @@ def email(request):
 
 
 def submit_resource(request):
-    title = request.POST['title']
-    url = request.POST['url']
+    # Get POST data
+    error = False
+    try:
+        title = request.POST['title']
+    except KeyError:
+        error = 'Please enter a resource title'
+    try:
+        url = request.POST['url']
+    except KeyError:
+        error = 'Please enter a url'
     submitter_id = request.POST['submitter']
     anonymous = False
     if 'anonymous' in request.POST.keys():
         anonymous = True
+
+    # Error Handling
+    if error:
+        return render(request, reverse('main_page:resource_submit_page'), {
+            'issue_list': Issue.objects.all(),
+            'error': error
+        })
+
+    # Add resource database
     issue = Issue.objects.get(pk=request.POST['issue'])
-    issue.resource_set.create(title=title, url=url, status='A', submitter_id=submitter_id, anonymous=anonymous)
+    issue.resource_set.create(title=title, url=url, status='P', submitter_id=submitter_id, anonymous=anonymous)
     return HttpResponseRedirect(reverse('main_page:resource_page'))
