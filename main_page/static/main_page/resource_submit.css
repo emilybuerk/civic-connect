@@ -1,0 +1,10 @@
+#mainContent {
+	.margin-left: 2em;
+	.margin-top: 1em;
+}
+
+.form-group > label {
+	/* form input labels */
+	display: block;
+	.font-weight: bold;
+}
