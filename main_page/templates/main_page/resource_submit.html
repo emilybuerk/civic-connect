@@ -18,8 +18,8 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
-    {% if error_message %}
     <div id="mainContent">
+        {% if error_message %}
         <p><strong>{{ error_message }}</strong></p>
         {% endif %}
         <h2>Submit Resource</h2>
