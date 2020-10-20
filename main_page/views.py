@@ -11,11 +11,8 @@ from .models import Issue
 # Create your views here.
 
 
-class HomeView(generic.ListView):
+class HomeView(generic.TemplateView):
     template_name = 'main_page/home_view.html'
-
-    def get_queryset(self):  # what does this do again???
-        return None
 
 
 class LoginView(generic.TemplateView):
@@ -33,6 +30,14 @@ class ResourceView(generic.ListView):
             issue_list.append(issue)
         issue_list.sort(key=lambda x: x.name)
         return issue_list
+
+
+class ResourceSubmitView(generic.ListView):
+    template_name = 'main_page/resource_submit.html'
+    context_object_name = 'issue_list'
+
+    def get_queryset(self):
+        return Issue.objects.all()
 
 
 def home(request):

@@ -1,0 +1,31 @@
+﻿{% load socialaccount %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Submit Resource - Civic Connect</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main_page/resource_submit.css' %}" />
+</head>
+<body>
+    {% include 'main_page/navbar.html' %}
+    <form action="{% url 'main_page:resouce_submission' %}" method="post">
+        {% csrf_token %}
+        <label for="resourceTitle">Title</label>
+        <input type="text" name="title" id="resourceTitle" />
+        <label for="resourceUrl">Url</label>
+        <input type="text" name="url" id="resourceUrl" />
+        <select name="issue" id="resourceIssue">
+            {% for issue in issue_list %}
+                <option value={{ issue.id }}>{{ issue.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="submitAnonymous">Submit Resource Anonymously</label>
+        <input type="checkbox" name="anonymous" id ="submitAnonymous" value="False" />
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
