@@ -1,8 +1,7 @@
 ﻿{% load socialaccount %}
 {% load static %}
 <!DOCTYPE html>
-{% if user %}
-{% else %}
+{% if not user.is_authenticated %}
 <!-- Redirect to login page if user is not logged in -->
 <script>
     window.location.replace("{% url 'main_page:login_page' %}")
@@ -19,7 +18,7 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
-    {% if error %}
+    {% if error_message %}
     <p><strong>{{ error }}</strong></p>
     {% endif %}
     <form action="{% url 'main_page:resource_submission' %}" method="post">

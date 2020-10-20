@@ -80,7 +80,7 @@ def submit_resource(request):
     if error:
         return render(request, reverse('main_page:resource_submit_page'), {
             'issue_list': Issue.objects.all(),
-            'error': error
+            'error_message': error
         })
 
     # Add resource database
