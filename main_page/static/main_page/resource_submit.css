@@ -6,5 +6,5 @@
 .form-group > label {
 	/* form input labels */
 	display: block;
-	.font-weight: bold;
+	font-weight: bold;
 }
