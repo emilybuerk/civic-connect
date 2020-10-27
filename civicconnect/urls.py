@@ -21,5 +21,6 @@ urlpatterns = [
     path('', landing_page, name='landing'),
     path('admin/', admin.site.urls),
     path('civicconnect/', include('main_page.urls')),
+    path('civicconnect/email/', include('email_sys.urls')),
     path('accounts/', include('allauth.urls'))
 ]
