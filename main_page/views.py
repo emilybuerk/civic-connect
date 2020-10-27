@@ -11,11 +11,8 @@ from .models import Issue
 # Create your views here.
 
 
-class HomeView(generic.ListView):
+class HomeView(generic.TemplateView):
     template_name = 'main_page/home_view.html'
-
-    def get_queryset(self):  # what does this do again???
-        return None
 
 
 class LoginView(generic.TemplateView):
@@ -35,6 +32,15 @@ class ResourceView(generic.ListView):
         return issue_list
 
 
+def resource_submit_form(request):
+    template_name = 'main_page/resource_submit.html'
+    context = {
+        'issue_list': Issue.objects.all(),
+    }
+
+    return render(request, template_name, context)
+
+
 def home(request):
     template = loader.get_template('main_page/home_view.html')
     context = {}
@@ -48,3 +54,46 @@ def landing_page(request):
 
 def email(request):
     return HttpResponse("This is email page")
+
+
+def resource_thanks(request):
+    template_name = 'main_page/resource_thanks.html'
+    context = {}
+
+    return render(request, template_name, context)
+
+
+def submit_resource(request):
+    # Get POST data
+    error = False
+    try:
+        title = request.POST['title']
+        if len(title) < 1:
+            error = 'Please enter a resource title'
+    except KeyError:
+        error = 'Please enter a resource title'
+    try:
+        url = request.POST['url']
+        if len(url) < 1:
+            error = 'Please enter a url'
+    except KeyError:
+        error = 'Please enter a url'
+    if int(request.POST['issue']) < 1:
+        error = 'Please select an issue'
+    submitter_id = request.POST['submitter']
+    anonymous = False
+    if 'anonymous' in request.POST.keys():
+        anonymous = True
+
+    # Error Handling
+    if error:
+        return render(request, 'main_page/resource_submit.html', {
+            'issue_list': Issue.objects.all(),
+            'error_message': error
+        })
+
+    # Add resource database
+
+    issue = Issue.objects.get(pk=request.POST['issue'])
+    issue.resource_set.create(title=title, url=url, status='P', submitter_id=submitter_id, anonymous=anonymous)
+    return HttpResponseRedirect(reverse('main_page:resource_thanks'))
