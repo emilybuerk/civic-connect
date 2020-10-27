@@ -2,4 +2,4 @@ Django
 gunicorn
 django-heroku
 django-allauth
-crispy_forms
+django-crispy-forms
