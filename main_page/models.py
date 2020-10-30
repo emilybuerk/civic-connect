@@ -1,7 +1,39 @@
 from django.db import models
 from django.contrib.auth import models as auth_models
 
+import requests
+
 # Source for learning more about models: https://docs.djangoproject.com/en/3.1/topics/db/models/
+
+# Parameters for Google Civic Information API query
+CIVIC_INFO_API_PARAMS = {
+            'key': 'AIzaSyAzUsEsBZFnqSlDtBn6YZJsP-wfpRiQHkc',
+            'levels': ['administrativeArea1', 'country'],
+            'roles': ['headOfGovernment', 'legislatorUpperBody', 'legislatorLowerBody']
+        }
+
+def format_address(address):
+    """ Takes an address dictionary retrieved from the Google Civic Information API and returns a string formatted
+    for mailing to that address. """
+    return address['line1'] \
+           + '\n' + address['city'] \
+           + ', ' + address['state'] \
+           + ' ' + address['zip']
+
+
+class Official:
+    def __init__(self, name, off, address):
+        self.name = name
+        self.office = off
+        self.address = address
+        self.email = False
+        self.photo = False
+
+    def __str__(self):
+        return self.name + ' (' + self.office + ')'
+
+    def get_address(self):
+        return self.name + '\n' + format_address(self.address)
 
 
 class Issue(models.Model):
@@ -61,3 +93,43 @@ class Resource(models.Model):
         if self.anonymous:
             return 'Anonymous User'
         return self.submitter.username
+
+
+"""
+Sources for User Profile Model:
+1 - https://medium.com/@ksarthak4ever/django-custom-user-model-allauth-for-oauth-20c84888c318
+2 - https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/
+"""
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(auth_models.User,
+                                on_delete=models.CASCADE,
+                                primary_key=True)
+    address = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.user.name + " Profile"
+
+    def has_address(self):
+        """ Checks if the user has an associated address """
+        return self.address == ''
+
+    def government_officials(self):
+        """ Returns a list of the government officials presiding over the user's address """
+        query_params = CIVIC_INFO_API_PARAMS
+        query_params['address'] = str(self.address)
+        response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives', params=query_params).json()
+        officials = []
+
+        for office in response['offices']:
+            for i in office['officialIndices']:
+                off_dict = response['officials'][i]
+                official = Official(off_dict['name'], office['name'], off_dict['address'][0])
+                if 'emails' in off_dict.keys():
+                    official.email = off_dict['emails'][0]
+                if 'photoUrl' in off_dict.keys():
+                    official.photo = off_dict['photoUrl']
+                officials.append(official)
+
+        return officials
