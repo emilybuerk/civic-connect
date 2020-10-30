@@ -25,7 +25,7 @@
     <div class="container text-center d-flex align-items-center justify-content-center h-100">
         <div class="jumbotron style = border-radius:20px">
             {% if needs_address %}
-            <h2>Find my Government Officials</h2>
+            <h3>Find my Government Officials</h3>
             <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
             <form action="{% url 'main_page:home_page' %}" method="post">
                 {% csrf_token %}
@@ -39,12 +39,26 @@
                     <input type="checkbox" name="save_info" id="saveContactInfo" />
                 </div>
                 {% endif %}
-                <button type="submit" value="Search" class="btn btn-primary">Submit</button>
+                <button type="submit" value="Submit" class="btn btn-primary">Search</button>
             </form>
             {% else %}
             <ul>
                 {% for contact in contacts %}
-                <li>{{ contact.name }} - {{ contact.office }}</li>
+                    <li class="list-group-item">
+                        <div>
+                            {% if contact.photo %}
+                                <img src="{{ contact.photo }}" width="50" height="50" />
+                            {% endif %}
+                            <p>
+                                <strong>{{ contact.name }}</strong><br />
+                                <strong>{{ contact.office }}</strong><br />
+                                {% if contact.email %}
+                                    {{ contact.email }}<br />
+                                {% endif %}
+                                {{ contact.get_address }}
+                            </p>
+                        </div>
+                    </li>
                 {% endfor %}
             </ul>
             {% endif %}
