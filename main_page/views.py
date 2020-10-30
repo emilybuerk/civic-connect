@@ -51,7 +51,7 @@ def contact_list(request):
     template = loader.get_template('main_page/contact_list.html')
     context = {}
     try:
-        context['cc_user'] = request.META['REMOTE_USER']
+        context['cc_user'] = str(request.META)
     except KeyError:
         context['cc_user'] = 'KEY ERROR'
     return HttpResponse(template.render(context, request))
