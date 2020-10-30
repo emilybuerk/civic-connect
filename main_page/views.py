@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Issue
+from .models import Issue, UserProfile, government_officials
 
 # Create your views here.
 
@@ -46,6 +46,15 @@ def home(request):
     context = {}
     return HttpResponse(template.render(context, request))
 
+
+def contact_list(request):
+    template = loader.get_template('main_page/contact_list.html')
+    context = {}
+    try:
+        context['cc_user'] = request.META['REMOTE_USER']
+    except KeyError:
+        context['cc_user'] = 'KEY ERROR'
+    return HttpResponse(template.render(context, request))
 
 # Redirect landing page to civcconnect
 def landing_page(request):

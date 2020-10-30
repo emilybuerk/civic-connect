@@ -96,6 +96,26 @@ class Resource(models.Model):
         return self.submitter.username
 
 
+def government_officials(address):
+    """ Returns a list of the government officials presiding over the given address """
+    query_params = CIVIC_INFO_API_PARAMS
+    query_params['address'] = address
+    response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives', params=query_params).json()
+    officials = []
+
+    for office in response['offices']:
+        for i in office['officialIndices']:
+            off_dict = response['officials'][i]
+            official = Official(off_dict['name'], office['name'], off_dict['address'][0])
+            if 'emails' in off_dict.keys():
+                official.email = off_dict['emails'][0]
+            if 'photoUrl' in off_dict.keys():
+                official.photo = off_dict['photoUrl']
+            officials.append(official)
+
+    return officials
+
+
 """
 Sources for User Profile Model:
 1 - https://medium.com/@ksarthak4ever/django-custom-user-model-allauth-for-oauth-20c84888c318
@@ -118,19 +138,4 @@ class UserProfile(models.Model):
 
     def government_officials(self):
         """ Returns a list of the government officials presiding over the user's address """
-        query_params = CIVIC_INFO_API_PARAMS
-        query_params['address'] = str(self.address)
-        response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives', params=query_params).json()
-        officials = []
-
-        for office in response['offices']:
-            for i in office['officialIndices']:
-                off_dict = response['officials'][i]
-                official = Official(off_dict['name'], office['name'], off_dict['address'][0])
-                if 'emails' in off_dict.keys():
-                    official.email = off_dict['emails'][0]
-                if 'photoUrl' in off_dict.keys():
-                    official.photo = off_dict['photoUrl']
-                officials.append(official)
-
-        return officials
+        return government_officials(self.address)
