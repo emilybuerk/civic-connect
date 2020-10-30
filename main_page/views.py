@@ -12,10 +12,6 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 
-class HomeView(generic.TemplateView):
-    template_name = 'main_page/home_view.html'
-
-
 class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
 

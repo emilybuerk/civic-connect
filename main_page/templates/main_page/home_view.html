@@ -43,8 +43,6 @@
             </form>
             {% else %}
             <ul>
-                <li>{{ contacts }}</li>
-                <li>{{ needs_address }}</li>
                 {% for contact in contacts %}
                 <li>{{ contact.name }} - {{ contact.office }}</li>
                 {% endfor %}
