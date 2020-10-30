@@ -12,6 +12,7 @@ CIVIC_INFO_API_PARAMS = {
             'roles': ['headOfGovernment', 'legislatorUpperBody', 'legislatorLowerBody']
         }
 
+
 def format_address(address):
     """ Takes an address dictionary retrieved from the Google Civic Information API and returns a string formatted
     for mailing to that address. """
