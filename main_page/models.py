@@ -14,10 +14,10 @@ CIVIC_INFO_API_PARAMS = {
 
 
 def format_address(address):
-    """ Takes an address dictionary retrieved from the Google Civic Information API and returns a string formatted
+    """ Takes an address dictionary retrieved from the Google Civic Information API and returns HTML formatted
     for mailing to that address. """
     return address['line1'] \
-           + '\n' + address['city'] \
+           + '<br/>' + address['city'] \
            + ', ' + address['state'] \
            + ' ' + address['zip']
 
@@ -34,7 +34,7 @@ class Official:
         return self.name + ' (' + self.office + ')'
 
     def get_address(self):
-        return self.name + '\n' + format_address(self.address)
+        return self.name + '<br />' + format_address(self.address)
 
 
 class Issue(models.Model):
