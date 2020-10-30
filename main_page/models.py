@@ -110,7 +110,7 @@ class UserProfile(models.Model):
     address = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.user.name + " Profile"
+        return self.user.username + " Profile"
 
     def has_address(self):
         """ Checks if the user has an associated address """
