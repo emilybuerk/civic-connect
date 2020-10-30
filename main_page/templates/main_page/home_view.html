@@ -9,6 +9,7 @@
     <meta name="google-site-verification" content="Rc8LWN-vgtLLewdAjWd8LWLrQR_KeXVzV032jrKnhCQ" />
     <title>Civic Connect</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main_page/home_page.css' %}" />
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
@@ -48,7 +49,7 @@
                     <li class="list-group-item">
                         <div class="official-contact-info" style="display: grid; text-align: left">
                             {% if contact.photo %}
-                                <img src="{{ contact.photo }}"  height="75" alt="{{ contact.name }}"/>
+                                <img src="{{ contact.photo }}"  height="100" alt="{{ contact.name }}"/>
                             {% endif %}
                             <p style="grid-column: 2">
                                 <strong>{{ contact.name }}</strong><br />
@@ -56,7 +57,9 @@
                                 {% if contact.email %}
                                     {{ contact.email }}<br />
                                 {% endif %}
-                                {{ contact.get_address }}
+                                {% for line in contact.get_address_line %}
+                                    {{ line }}<br />
+                                {% endfor %}
                             </p>
                         </div>
                     </li>
