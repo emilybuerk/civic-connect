@@ -7,6 +7,7 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Issue, UserProfile, government_officials
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -51,9 +52,14 @@ def contact_list(request):
     template = loader.get_template('main_page/contact_list.html')
     context = {}
     try:
-        context['cc_user'] = str(request.user)
-    except KeyError:
-        context['cc_user'] = 'KEY ERROR'
+        current_user = User.objects.get(name=request.user)
+        user_profile = UserProfile.objects.get(user_id=current_user.id)
+        context['contacts'] = user_profile.government_officials()
+    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+        try:
+            context['contacts'] = government_officials(request.POST['address'])
+        except KeyError:
+            context['needs_address'] = True
     return HttpResponse(template.render(context, request))
 
 # Redirect landing page to civcconnect

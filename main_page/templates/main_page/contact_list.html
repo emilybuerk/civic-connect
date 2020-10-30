@@ -12,6 +12,14 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
-    <p>User: {{ cc_user }}</p>
+    {% if needs_address %}
+        <p>You need an address</p>
+    {% else %}
+        <ul>
+            {% for contact in contacts %}
+            <h2>{{ contact.name }} - {{ contact.office }}</h2>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>
