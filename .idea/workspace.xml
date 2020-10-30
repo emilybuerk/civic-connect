@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25e79b1c-b427-4d36-b799-7a929cda46ce" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/email_sys/templates/email_sys/sent.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email_sys/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email_sys/templates/email_sys/preview.html" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/templates/email_sys/preview.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email_sys/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email_sys/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,38 +15,41 @@
     <session id="-1001249857">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="11" />
-          <entry key="py" value="16" />
+          <entry key="css" value="3" />
+          <entry key="html" value="20" />
+          <entry key="py" value="35" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="11" />
+          <entry key="CSS" value="3" />
+          <entry key="HTML" value="20" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="16" />
+          <entry key="Python" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="548" />
-          <entry key="py" value="1322" />
-          <entry key="txt" value="106" />
+          <entry key="html" value="859" />
+          <entry key="py" value="1569" />
+          <entry key="txt" value="175" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="548" />
-          <entry key="PLAIN_TEXT" value="106" />
-          <entry key="Python" value="1322" />
+          <entry key="HTML" value="859" />
+          <entry key="PLAIN_TEXT" value="175" />
+          <entry key="Python" value="1569" />
         </counts>
       </usages-collector>
     </session>
@@ -58,85 +57,54 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/views.py">
+        <entry file="file://$PROJECT_DIR$/email_sys/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+            <state relative-caret-position="150">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
-                <element signature="e#2#37#0" expanded="true" />
-                <marker date="1603047748255" expanded="true" signature="515:516" ph="..." />
-                <marker date="1603047748255" expanded="true" signature="1044:1045" ph="..." />
-                <marker date="1603047748255" expanded="true" signature="1569:1574" ph="..." />
+                <element signature="e#0#28#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/navbar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_page/apps.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/sent.html">
+        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/template_email.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            <state>
+              <caret column="64" lean-forward="true" selection-start-column="64" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/preview.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/prompt.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/scratch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/template.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/urls.py">
+        <entry file="file://$PROJECT_DIR$/main_page/static/main_page/resources.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
-              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/forms.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
+              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -146,6 +114,24 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/navbar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/scratch_email.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -160,22 +146,31 @@
       <list>
         <option value="$PROJECT_DIR$/main_page/views.py" />
         <option value="$PROJECT_DIR$/email_sys/forms.py" />
-        <option value="$PROJECT_DIR$/civicconnect/settings.py" />
         <option value="$PROJECT_DIR$/civicconnect/urls.py" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/prompt.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/scratch.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/template.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/preview.html" />
         <option value="$PROJECT_DIR$/email_sys/models.py" />
-        <option value="$PROJECT_DIR$/email_sys/views.py" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/sent.html" />
+        <option value="$PROJECT_DIR$/email_sys/templates/email_sys/base.html" />
+        <option value="$PROJECT_DIR$/email_sys/views.py" />
+        <option value="$PROJECT_DIR$/email_sys/static/email_sys/style.css" />
+        <option value="$PROJECT_DIR$/email_sys/admin.py" />
+        <option value="$PROJECT_DIR$/email_sys/templates/email_sys/scratch_email.html" />
+        <option value="$PROJECT_DIR$/email_sys/templates/email_sys/template_email.html" />
+        <option value="$PROJECT_DIR$/civicconnect/settings.py" />
+        <option value="$PROJECT_DIR$/main_page/urls.py" />
+        <option value="$PROJECT_DIR$/main_page/templates/main_page/navbar.html" />
+        <option value="$PROJECT_DIR$/email_sys/templates/email_sys/navbar.html" />
         <option value="$PROJECT_DIR$/email_sys/urls.py" />
+        <option value="$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="99" />
-    <option name="y" value="35" />
+    <option name="x" value="42" />
+    <option name="y" value="67" />
     <option name="width" value="1327" />
     <option name="height" value="713" />
   </component>
@@ -195,20 +190,49 @@
             <path>
               <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
+              <item name="civicconnect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
               <item name="email_sys" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
               <item name="email_sys" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
+              <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project-2-27" type="b2602c69:ProjectViewProjectNode" />
               <item name="project-2-27" type="462c0819:PsiDirectoryNode" />
-              <item name="email_sys" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="email_sys" type="462c0819:PsiDirectoryNode" />
+              <item name="main_page" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -220,6 +244,9 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/email_sys/templates/email_sys" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/email_sys/templates" />
     </key>
@@ -289,31 +316,62 @@
       <option name="project" value="LOCAL" />
       <updated>1602977129208</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="email progress">
+      <created>1603142599905</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1603142599905</updated>
+    </task>
+    <task id="LOCAL-00008" summary="merging with master">
+      <created>1603142675136</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603142675136</updated>
+    </task>
+    <task id="LOCAL-00009" summary="scratch email progress">
+      <created>1603845473962</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603845473963</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added migration file">
+      <created>1603845620930</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1603845620930</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="99" y="35" width="1327" height="713" extended-state="0" />
+    <frame x="42" y="67" width="1327" height="713" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17687596" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17687596" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.16555184" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.35618728" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31438127" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.css" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -325,12 +383,13 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/master' into dev-Jennah&#10;&#10;# Conflicts:&#10;#&#9;civicconnect/settings.py&#10;#&#9;civicconnect/urls.py" />
     <MESSAGE value="Merge remote-tracking branch 'origin/master' into dev-Jennah&#10;&#10;# Please enter a commit message to explain why this merge is necessary,&#10;# especially if it merges an updated upstream into a topic branch.&#10;#&#10;# Lines starting with '#' will be ignored, and an empty message aborts&#10;# the commit.&#10;updating branch with master" />
     <MESSAGE value="email preview" />
-    <option name="LAST_COMMIT_MESSAGE" value="email preview" />
+    <MESSAGE value="email progress" />
+    <MESSAGE value="merging with master" />
+    <MESSAGE value="scratch email progress" />
+    <MESSAGE value="added migration file" />
+    <option name="LAST_COMMIT_MESSAGE" value="added migration file" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -350,39 +409,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_page/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_page/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-end-line="10" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/home_view.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/navbar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/civicconnect/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
@@ -393,10 +419,153 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/preview.html" />
+    <entry file="file://$PROJECT_DIR$/email_sys/forms.py" />
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/sent.html" />
+    <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/home_view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="7" lean-forward="true" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/static/email_sys/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="19" lean-forward="true" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="29" lean-forward="true" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="29" lean-forward="true" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="21" column="58" lean-forward="true" selection-start-line="21" selection-start-column="58" selection-end-line="21" selection-end-column="58" />
+          <folding>
+            <element signature="e#2#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manage.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/civicconnect/views.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/civicconnect/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1942">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        <state relative-caret-position="495">
+          <caret line="33" column="73" selection-start-line="33" selection-start-column="73" selection-end-line="33" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="55">
+          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/resources.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/migrations/0001_initial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/apps.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/scratch_email.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
         </state>
       </provider>
     </entry>
@@ -407,71 +576,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/scratch.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/template.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/prompt.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="7" lean-forward="true" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/urls.py">
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/navbar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+          <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/preview.html">
+    <entry file="file://$PROJECT_DIR$/main_page/static/main_page/resources.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="45" selection-start-line="11" selection-start-column="45" selection-end-line="11" selection-end-column="45" />
+        <state relative-caret-position="135">
+          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/forms.py">
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="495">
+          <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/views.py">
+    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/template_email.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
-          <folding>
-            <element signature="e#2#37#0" expanded="true" />
-            <marker date="1603047748255" expanded="true" signature="515:516" ph="..." />
-            <marker date="1603047748255" expanded="true" signature="1044:1045" ph="..." />
-            <marker date="1603047748255" expanded="true" signature="1569:1574" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/sent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state>
+          <caret column="64" lean-forward="true" selection-start-column="64" selection-end-column="64" />
         </state>
       </provider>
     </entry>
