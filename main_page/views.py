@@ -45,6 +45,16 @@ def resource_submit_form(request):
 def home(request):
     template = loader.get_template('main_page/home_view.html')
     context = {}
+    try:
+        current_user = User.objects.get(username=request.user)
+        user_profile = UserProfile.objects.get(user_id=current_user.id)
+        context['contacts'] = user_profile.government_officials()
+        context['address'] = user_profile.address
+    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+        try:
+            context['contacts'] = government_officials(request.POST['address'])
+        except KeyError:
+            context['needs_address'] = True
     return HttpResponse(template.render(context, request))
 
 
@@ -61,6 +71,7 @@ def contact_list(request):
         except KeyError:
             context['needs_address'] = True
     return HttpResponse(template.render(context, request))
+
 
 # Redirect landing page to civcconnect
 def landing_page(request):

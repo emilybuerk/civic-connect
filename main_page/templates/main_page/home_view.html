@@ -15,11 +15,37 @@
     {% block content %}{% endblock %}
 
 
-    <div class= "container text-center d-flex align-items-center justify-content-center h-100">
-        <div class= "jumbotron style = border-radius:20px">
+    <div class="container text-center d-flex align-items-center justify-content-center h-100">
+        <div class="jumbotron style = border-radius:20px">
             <h1>
                 Welcome User! Check out our Resources Page!
             </h1>
+        </div>
+        <div class="jumbotron style = border-radius:20px">
+            {% if needs_address %}
+                <h2>Find my Government Officials</h2>
+                <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
+                <form action="{% url 'main_page:home_page' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" />
+                </div>
+                {% if user.is_authenticated %}
+                <div class="form-group">
+                    <label for="saveContactInfo" style="display: inline">Save my contact info</label>
+                    <input type="checkbox" name="save_info" id="saveContactInfo" />
+                </div>
+                {% endif %}
+                <button type="submit" value="Search" class="btn btn-primary">Submit</button>
+                </form>
+            {% else %}
+            <ul>
+                {% for contact in contacts %}
+                <h2>{{ contact.name }} - {{ contact.office }}</h2>
+                {% endfor %}
+            </ul>
+            {% endif %}
         </div>
     </div>
     
