@@ -21,11 +21,13 @@
                 Welcome User! Check out our Resources Page!
             </h1>
         </div>
+    </div>
+    <div class="container text-center d-flex align-items-center justify-content-center h-100">
         <div class="jumbotron style = border-radius:20px">
             {% if needs_address %}
-                <h2>Find my Government Officials</h2>
-                <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
-                <form action="{% url 'main_page:home_page' %}" method="post">
+            <h2>Find my Government Officials</h2>
+            <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
+            <form action="{% url 'main_page:home_page' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="address">Address</label>
@@ -38,17 +40,19 @@
                 </div>
                 {% endif %}
                 <button type="submit" value="Search" class="btn btn-primary">Submit</button>
-                </form>
+            </form>
             {% else %}
             <ul>
+                <li>{{ str(contacts) }}</li>
+                <li>{{ needs_address }}</li>
                 {% for contact in contacts %}
-                <h2>{{ contact.name }} - {{ contact.office }}</h2>
+                <li>{{ contact.name }} - {{ contact.office }}</li>
                 {% endfor %}
             </ul>
             {% endif %}
         </div>
     </div>
-    
+
 
 </body>
 </html>
