@@ -3,3 +3,7 @@
 	.text-align: left;
 	.grid-template-columns: 150px 1fr;
 }
+
+.email {
+	color: blue;
+}

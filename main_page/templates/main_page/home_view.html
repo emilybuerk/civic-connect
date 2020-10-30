@@ -55,9 +55,9 @@
                                 <strong>{{ contact.name }}</strong><br />
                                 <strong>{{ contact.office }}</strong><br />
                                 {% if contact.email %}
-                                    {{ contact.email }}<br />
+                                    <font class="email">{{ contact.email }}<br /></font>
                                 {% endif %}
-                                {% for line in contact.get_address_line %}
+                                {% for line in contact.get_address_lines %}
                                     {{ line }}<br />
                                 {% endfor %}
                             </p>
