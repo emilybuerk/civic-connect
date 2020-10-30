@@ -1,4 +1,5 @@
 ﻿{% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,13 +14,28 @@
 <body>
     {% include 'main_page/navbar.html' %}
     {% if needs_address %}
-        <p>You need an address</p>
+    <h2>Enter Address</h2>
+    <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
+    <form action="{% url 'main_page:contact_list' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <!--<label for="address">Url</label>-->
+            <input type="text" name="address" id="address" />
+        </div>
+        {% if user.is_authenticated %}
+            <div class="form-group">
+                <label for="saveContactInfo" style="display: inline">Save my contact info</label>
+                <input type="checkbox" name="save_info" id="saveContactInfo" />
+            </div>
+        {% endif %}
+        <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+    </form>
     {% else %}
-        <ul>
-            {% for contact in contacts %}
-            <h2>{{ contact.name }} - {{ contact.office }}</h2>
-            {% endfor %}
-        </ul>
+    <ul>
+        {% for contact in contacts %}
+        <h2>{{ contact.name }} - {{ contact.office }}</h2>
+        {% endfor %}
+    </ul>
     {% endif %}
 </body>
 </html>

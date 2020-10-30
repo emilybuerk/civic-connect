@@ -52,7 +52,7 @@ def contact_list(request):
     template = loader.get_template('main_page/contact_list.html')
     context = {}
     try:
-        current_user = User.objects.get(name=request.user)
+        current_user = User.objects.get(username=request.user)
         user_profile = UserProfile.objects.get(user_id=current_user.id)
         context['contacts'] = user_profile.government_officials()
     except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
