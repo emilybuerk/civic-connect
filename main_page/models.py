@@ -107,16 +107,16 @@ def government_officials(address):
     officials = {}
 
     for office in response['offices']:
+        if office['levels'][0] not in officials.keys():
+            officials[office['levels'][0]] = []
         for i in office['officialIndices']:
             off_dict = response['officials'][i]
-            if off_dict['levels'][0] not in officials.keys():
-                officials[off_dict['levels'][0]] = []
             official = Official(off_dict['name'], office['name'], off_dict['address'][0])
             if 'emails' in off_dict.keys():
                 official.email = off_dict['emails'][0]
             if 'photoUrl' in off_dict.keys():
                 official.photo = off_dict['photoUrl']
-            officials[off_dict['levels'][0]].append(official)
+            officials[office['levels'][0]].append(official)
 
     officials_list = []
     for level in officials.keys():
