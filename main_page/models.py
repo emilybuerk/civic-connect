@@ -100,23 +100,29 @@ class Resource(models.Model):
 
 
 def government_officials(address):
-    """ Returns a list of the government officials presiding over the given address """
+    """ Returns a 2D list of the government officials presiding over the given address separated by government level """
     query_params = CIVIC_INFO_API_PARAMS
     query_params['address'] = address
     response = requests.get('https://www.googleapis.com/civicinfo/v2/representatives', params=query_params).json()
-    officials = []
+    officials = {}
 
     for office in response['offices']:
         for i in office['officialIndices']:
             off_dict = response['officials'][i]
+            if off_dict['levels'][0] not in officials.keys():
+                officials[off_dict['levels'][0]] = []
             official = Official(off_dict['name'], office['name'], off_dict['address'][0])
             if 'emails' in off_dict.keys():
                 official.email = off_dict['emails'][0]
             if 'photoUrl' in off_dict.keys():
                 official.photo = off_dict['photoUrl']
-            officials.append(official)
+            officials[off_dict['levels'][0]].append(official)
 
-    return officials
+    officials_list = []
+    for level in officials.keys():
+        officials_list.append(officials[level])
+
+    return officials_list
 
 
 """

@@ -11,3 +11,8 @@
 .email {
 	font-style: italic;
 }
+
+#contactGrid {
+	display: grid;
+	grid-template-columns: 50% 50%;
+}

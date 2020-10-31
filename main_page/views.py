@@ -52,7 +52,7 @@ def home(request):
         except KeyError:
             context['needs_address'] = True
     return HttpResponse(template.render(context, request))
-2
+
 
 def contact_list(request):
     template = loader.get_template('main_page/contact_list.html')
