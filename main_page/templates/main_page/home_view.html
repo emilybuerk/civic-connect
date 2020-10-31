@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      {{ debug }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -49,7 +48,7 @@
                 <div id="contactGrid">
                     {% for level in contacts %}
                         <ul>
-                            {% for contact in contacts %}
+                            {% for contact in level %}
                                 <li class="list-group-item">
                                     <div class="official-contact-info" style="display: grid; text-align: left">
                                         {% if contact.photo %}
