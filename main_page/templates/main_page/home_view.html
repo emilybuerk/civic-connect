@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+      {{ debug }}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -33,7 +34,7 @@
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" />
+                        <input type="text" name="address" id="address" size="60" />
                     </div>
                     {% if user.is_authenticated %}
                     <div class="form-group">
@@ -47,27 +48,27 @@
                 <h3>My Government Officials</h3>
                 <div id="contactGrid">
                     {% for level in contacts %}
-                    <ul>
-                        {% for contact in contacts %}
-                        <li class="list-group-item">
-                            <div class="official-contact-info" style="display: grid; text-align: left">
-                                {% if contact.photo %}
-                                <img src="{{ contact.photo }}" height="100" alt="{{ contact.name }}" />
-                                {% endif %}
-                                <p style="grid-column: 2">
-                                    <strong>{{ contact.name }}</strong><br />
-                                    <strong>{{ contact.office }}</strong><br />
-                                    {% if contact.email %}
-                                    <font class="email">{{ contact.email }}<br /></font>
-                                    {% endif %}
-                                    {% for line in contact.get_address_lines %}
-                                    {{ line }}<br />
-                                    {% endfor %}
-                                </p>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                        <ul>
+                            {% for contact in contacts %}
+                                <li class="list-group-item">
+                                    <div class="official-contact-info" style="display: grid; text-align: left">
+                                        {% if contact.photo %}
+                                        <img src="{{ contact.photo }}" height="100" alt="{{ contact.name }}" />
+                                        {% endif %}
+                                        <p style="grid-column: 2">
+                                            <strong>{{ contact.name }}</strong><br />
+                                            <strong>{{ contact.office }}</strong><br />
+                                            {% if contact.email %}
+                                            <font class="email">{{ contact.email }}<br /></font>
+                                            {% endif %}
+                                            {% for line in contact.get_address_lines %}
+                                            {{ line }}<br />
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     {% endfor %}
                 </div>
             {% endif %}

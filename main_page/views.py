@@ -58,14 +58,21 @@ def contact_list(request):
     template = loader.get_template('main_page/contact_list.html')
     context = {}
     try:
+        context['debug'] = 'A'
         current_user = User.objects.get(username=request.user)
+        context['debug'] = 'B'
         user_profile = UserProfile.objects.get(user_id=current_user.id)
+        context['debug'] = 'C'
         context['contacts'] = user_profile.government_officials()
+        context['debug'] = 'D'
     except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
         try:
+            context['debug'] = 'E'
             context['contacts'] = government_officials(request.POST['address'])
+            context['debug'] = 'F'
         except KeyError:
             context['needs_address'] = True
+            context['debug'] = 'G'
     return HttpResponse(template.render(context, request))
 
 
