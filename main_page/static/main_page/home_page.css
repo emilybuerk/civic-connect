@@ -1,7 +1,11 @@
 .official-contact-info {
-	.display: grid;
-	.text-align: left;
-	.grid-template-columns: 200px 1fr;
+	display: grid;
+	text-align: left;
+	grid-template-columns: 110px 1fr;
+}
+
+.official-contact-info > img {
+	margin: auto;
 }
 
 .email {
