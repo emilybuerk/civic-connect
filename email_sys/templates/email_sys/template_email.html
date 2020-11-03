@@ -9,9 +9,43 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
 </head>
-<body>
-    {% include 'main_page/navbar.html' %}
-    <!--<a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}">Send email</a>-->
-    <a href="mailto:someone@example.com?subject=This is subject&body=The body of the email">Send email</a>
-</body>
+<!--<div class = "col-xs-1" align = "center">-->
+    <body>
+        {% include 'main_page/navbar.html' %}
+   
+        {% if template %}
+            <style>
+                p    {color:black;}
+                p    {margin: 20px;}
+
+                .card{
+                    margin:20px;
+                }
+            </style>
+            <p>
+                <b style="font-size:30px">Template Preview</b>
+            </p>
+        {% endif %}
+
+        {% if template %}
+
+
+        <div class="card" style="width: 50rem;">
+            <div class="card-body">
+            <h6 class="card-subtitle mb-2 text-muted">Subject: {{template.title}}</h6>
+            <p class="card-text">{{template.body}}</p>
+            <a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}"><b>Send Email</b></a>
+            
+            </div>
+        </div>
+
+            
+        {% else %}
+            <a href="mailto:someone@example.com?subject=No Subject&body=No Body">Send email</a>
+        {% endif %}
+        
+        <!--<a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}">Send email</a>-->
+        
+    </body>
+<!--</div>-->
 </html>

@@ -11,19 +11,24 @@ from .models import Template
 # Create your views here.
 
 
-class EmailView(generic.TemplateView):
-    template_name = "email_sys/email_view.html"
+# class EmailView(generic.TemplateView):
+#     template_name = "email_sys/email_view.html"
 
-class From_Template_View(generic.TemplateView):
-    template_name = 'email_sys/template_email.html'
+# class From_Template_View(generic.TemplateView):
+#     template_name = 'email_sys/template_email.html'
 
+#Loads all drop-down templates
+def template_view(request):
+    context = {'drop_down_list':Template.objects.all()}
+    return render(request, 'email_sys/email_view.html',context)
 
 def prompt(request):
     context = {'templates_list': Template.objects.all()}
     return render(request, 'email_sys/email_prompt.html', context)
 
-def scratch(request):
-    return render(request, 'email_sys/template_email.html')#scratch_email.html')
+def unique_template_view(request, template_id):
+    context = {'template':Template.objects.get(pk=template_id)}
+    return render(request, 'email_sys/template_email.html',context)#scratch_email.html')
 
 
 
