@@ -6,13 +6,10 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Issue
+from .models import Issue, UserProfile, government_officials
+from django.contrib.auth.models import User
 
 # Create your views here.
-
-
-class HomeView(generic.TemplateView):
-    template_name = 'main_page/home_view.html'
 
 
 class LoginView(generic.TemplateView):
@@ -44,6 +41,36 @@ def resource_submit_form(request):
 def home(request):
     template = loader.get_template('main_page/home_view.html')
     context = {}
+    try:
+        current_user = User.objects.get(username=request.user)
+        user_profile = UserProfile.objects.get(user_id=current_user.id)
+        context['contacts'] = user_profile.government_officials()
+        context['address'] = user_profile.address
+    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+        try:
+            context['contacts'] = government_officials(request.POST['address'])
+            if 'save_info' in request.POST.keys():
+                # Save address in user's profile
+                current_user = User.objects.get(username=request.user)
+                user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
+                user_profile.save()
+        except KeyError:
+            context['needs_address'] = True
+    return HttpResponse(template.render(context, request))
+
+
+def contact_list(request):
+    template = loader.get_template('main_page/contact_list.html')
+    context = {}
+    try:
+        current_user = User.objects.get(username=request.user)
+        user_profile = UserProfile.objects.get(user_id=current_user.id)
+        context['contacts'] = user_profile.government_officials()
+    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+        try:
+            context['contacts'] = government_officials(request.POST['address'])
+        except KeyError:
+            context['needs_address'] = True
     return HttpResponse(template.render(context, request))
 
 

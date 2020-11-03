@@ -9,14 +9,24 @@ from .models import Template
 
 
 # Create your views here.
+
+
+class EmailView(generic.TemplateView):
+    template_name = "email_sys/email_view.html"
+
+class From_Template_View(generic.TemplateView):
+    template_name = 'email_sys/template_email.html'
+
+
 def prompt(request):
     context = {'templates_list': Template.objects.all()}
     return render(request, 'email_sys/email_prompt.html', context)
 
 def scratch(request):
-    return render(request, 'email_sys/scratch_email.html')
+    return render(request, 'email_sys/template_email.html')#scratch_email.html')
 
 
-def from_template(request, template_id):
-    template = get_object_or_404(Template, pk=template_id)
-    return render(request, 'email_sys/template_email.html')
+
+# def from_template(request, template_id):
+#     template = get_object_or_404(Template, pk=template_id)
+#     return render(request, 'email_sys/template_email.html')

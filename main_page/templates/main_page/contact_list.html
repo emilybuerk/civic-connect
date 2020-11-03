@@ -1,0 +1,41 @@
+﻿{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Government Officials</title>
+    <link rel="icon" type="image/x-icon" src="{% static 'main_page/favicon.ico' %}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main_page/contact_list.css' %}" />
+</head>
+<body>
+    {% include 'main_page/navbar.html' %}
+    {% if needs_address %}
+    <h2>Enter Address</h2>
+    <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
+    <form action="{% url 'main_page:contact_list' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <!--<label for="address">Url</label>-->
+            <input type="text" name="address" id="address" />
+        </div>
+        {% if user.is_authenticated %}
+            <div class="form-group">
+                <label for="saveContactInfo" style="display: inline">Save my contact info</label>
+                <input type="checkbox" name="save_info" id="saveContactInfo" />
+            </div>
+        {% endif %}
+        <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% else %}
+    <ul>
+        {% for contact in contacts %}
+        <h2>{{ contact.name }} - {{ contact.office }}</h2>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>
