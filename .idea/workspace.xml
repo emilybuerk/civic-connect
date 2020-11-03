@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="25e79b1c-b427-4d36-b799-7a929cda46ce" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/civicconnect/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/civicconnect/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email_sys/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email_sys/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/email_sys/tests.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,42 +27,77 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="html" value="20" />
-          <entry key="py" value="35" />
+          <entry key="html" value="21" />
+          <entry key="py" value="40" />
           <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="20" />
+          <entry key="HTML" value="21" />
           <entry key="PLAIN_TEXT" value="2" />
-          <entry key="Python" value="35" />
+          <entry key="Python" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="859" />
-          <entry key="py" value="1569" />
-          <entry key="txt" value="175" />
+          <entry key="py" value="2315" />
+          <entry key="txt" value="190" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="859" />
-          <entry key="PLAIN_TEXT" value="175" />
-          <entry key="Python" value="1569" />
+          <entry key="PLAIN_TEXT" value="190" />
+          <entry key="Python" value="2315" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/urls.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/civicconnect/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="-53">
+              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/email_sys/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1286">
+              <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <marker date="1604264209167" expanded="true" signature="125:126" ph="..." />
+                <marker date="1604264209167" expanded="true" signature="125:127" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_page/tests.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-438">
+              <caret line="42" column="25" lean-forward="true" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main_page/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="86">
+              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -69,69 +106,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/navbar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_page/apps.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="10" selection-start-line="33" selection-start-column="10" selection-end-line="33" selection-end-column="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/template_email.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="64" lean-forward="true" selection-start-column="64" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/main_page/static/main_page/resources.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/email_sys/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/navbar.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="37" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/scratch_email.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
+            <state relative-caret-position="255">
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -151,7 +129,6 @@
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/scratch.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/template.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/preview.html" />
-        <option value="$PROJECT_DIR$/email_sys/models.py" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/sent.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/base.html" />
         <option value="$PROJECT_DIR$/email_sys/views.py" />
@@ -159,12 +136,15 @@
         <option value="$PROJECT_DIR$/email_sys/admin.py" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/scratch_email.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/template_email.html" />
-        <option value="$PROJECT_DIR$/civicconnect/settings.py" />
         <option value="$PROJECT_DIR$/main_page/urls.py" />
         <option value="$PROJECT_DIR$/main_page/templates/main_page/navbar.html" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/navbar.html" />
         <option value="$PROJECT_DIR$/email_sys/urls.py" />
         <option value="$PROJECT_DIR$/email_sys/templates/email_sys/email_prompt.html" />
+        <option value="$PROJECT_DIR$/main_page/models.py" />
+        <option value="$PROJECT_DIR$/email_sys/models.py" />
+        <option value="$PROJECT_DIR$/email_sys/tests.py" />
+        <option value="$PROJECT_DIR$/civicconnect/settings.py" />
       </list>
     </option>
   </component>
@@ -344,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603845620930</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="mailto progress">
+      <created>1603928783745</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1603928783746</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -362,7 +349,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.31438127" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.28093645" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -387,7 +374,8 @@
     <MESSAGE value="merging with master" />
     <MESSAGE value="scratch email progress" />
     <MESSAGE value="added migration file" />
-    <option name="LAST_COMMIT_MESSAGE" value="added migration file" />
+    <MESSAGE value="mailto progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="mailto progress" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/requirements.txt">
@@ -463,16 +451,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_page/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/email_sys/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -483,27 +461,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main_page/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/civicconnect/views.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/civicconnect/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="73" selection-start-line="33" selection-start-column="73" selection-end-line="33" selection-end-column="73" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_page/urls.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -569,13 +531,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/email_sys/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/email_sys/templates/email_sys/navbar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -601,6 +556,57 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="64" lean-forward="true" selection-start-column="64" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/templates/main_page/resource_submit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-300" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main_page/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-438">
+          <caret line="42" column="25" lean-forward="true" selection-start-line="42" selection-start-column="25" selection-end-line="42" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/email_sys/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1286">
+          <caret line="104" lean-forward="true" selection-start-line="104" selection-end-line="104" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1604264209167" expanded="true" signature="125:126" ph="..." />
+            <marker date="1604264209167" expanded="true" signature="125:127" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/civicconnect/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-53">
+          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
         </state>
       </provider>
     </entry>
