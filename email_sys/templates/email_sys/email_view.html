@@ -1,0 +1,42 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Verify Ownership of Page for Google API -->
+    <meta name="google-site-verification" content="Rc8LWN-vgtLLewdAjWd8LWLrQR_KeXVzV032jrKnhCQ" />
+    <title>Civic Connect</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    {% include 'main_page/navbar.html' %}
+    {% block content %}{% endblock %}
+</body>
+</html>
+
+
+<form>
+
+    <div class = "col-xs-1" align = "center">
+        <div class="form-group" style ="width: 300px;">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Enter your representatives email.</small>
+             <!--Also add a dropdown-->
+        </div>
+        
+        <div class="form-group" style ="width: 1000px;">
+             <!--Temporarily using resource page, but we'd want a separate template page, which will prefill this page with text. Is there also a way to prefill an email with text?-->
+            <label for = "emailTextArea">Enter your message here or use an <a href="{% url 'main_page:resource_page' %}">exisiting template</a></label>
+        
+            <textarea class = "form-control" id = "emailTextArea" rows = "10"></textarea>
+        </div>
+
+        <!--<button type="Send" class="btn btn-primary">Submit</button>-->
+        <!--Here, we need to allow user to input href, and also get the form input into the email... Might need to include something.-->
+        <a href="mailto:" target="_blank" class="btn btn-primary">Send Email</a>
+        <!--How about instead, redirects you, and triggers a fuction/view which takes in a s input the link you put?-->
+    </div>
+</form>

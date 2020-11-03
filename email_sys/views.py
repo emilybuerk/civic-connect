@@ -9,6 +9,8 @@ from .models import Template
 
 
 # Create your views here.
+
+
 def prompt(request):
     context = {'templates_list': Template.objects.all()}
     return render(request, 'email_sys/email_prompt.html', context)
