@@ -5,7 +5,6 @@ from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-
 from .models import Issue
 
 # Create your views here.
@@ -14,10 +13,8 @@ from .models import Issue
 class HomeView(generic.TemplateView):
     template_name = 'main_page/home_view.html'
 
-
 class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
-
 
 class ResourceView(generic.ListView):
     template_name = 'main_page/resources.html'
