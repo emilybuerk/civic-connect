@@ -20,7 +20,7 @@
     <div class="container text-center d-flex align-items-center justify-content-center h-100">
         <div class="jumbotron style = border-radius:20px">
             <h1>
-                Welcome {% if user.is_authenticated and user.first_name %}{{ user.first_name }}{% else %}User{% endif %}! Check out our Resources Page!
+                Welcome {% if user.is_authenticated and user.first_name %}{{ user.first_name }}{% else %}User! Check out our Resources Page{% endif %}!
             </h1>
         </div>
     </div>
@@ -44,6 +44,9 @@
                     <button type="submit" value="Submit" class="btn btn-primary">Search</button>
                 </form>
             {% else %}
+                {% if address %}
+                    <h4><em>Address:</em>{{ address }}<a>Change</a></h4>
+                {% endif %}
                 <h3>My Government Officials</h3>
                 <div id="contactGrid">
                     {% for level in contacts %}
