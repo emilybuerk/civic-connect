@@ -12,7 +12,7 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
-    <nav class="navbar-light bg-light">
+    <nav id="SearchBarNav" class="navbar-light bg-light">
         <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
         <form action="{% url 'main_page:resource_page' %}" method="get">
             <div id="SearchBar" class="input-group">
@@ -31,19 +31,21 @@
             <ul>
                 {% for resource in issue.active_resources %}
                     {% if keyword %}
-                        {% if keyword in resource.title %}
-                        <li>
-                            <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
-                            {% if resource.user_resource %}
-                            <h5>- Submitted by {{ resource.get_submitter }}</h5>
-                            {% endif %}
-                        </li>
+                        <h2>{{ keyword.lower }}</h2>
+                        <h2>{{ resource.title.lower }}</h2>
+                        {% if keyword.lower in resource.title.lower %}
+                            <li>
+                                <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                                {% if resource.user_resource %}
+                                    <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                                {% endif %}
+                            </li>
                         {% endif %}
                     {% else %}
                         <li>
                             <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
                             {% if resource.user_resource %}
-                            <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                                <h5>- Submitted by {{ resource.get_submitter }}</h5>
                             {% endif %}
                         </li>
                     {% endif %}
