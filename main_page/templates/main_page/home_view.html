@@ -16,33 +16,32 @@
     {% include 'main_page/navbar.html' %}
     {% block content %}{% endblock %}
 
-
-    <div class="container text-center d-flex align-items-center justify-content-center h-50">
-        <div class="jumbotron style = border-radius:20px">
-            {% if user.is_authenticated %}
-                <h3>
-                    Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
-                </h3>
-            {% else %}
+    {% if user.is_authenticated %}
+    <h2>
+        Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
+    </h2>
+    {% else %}
+        <div class="container text-center d-flex align-items-center justify-content-center h-50">
+            <div class="jumbotron style = border-radius:20px">
                 <h1>
                     Welcome User! Check out our Resources Page!
                 </h1>
-            {% endif %}
+            </div>
         </div>
-    </div>
+    {% endif %}
     <div class="row">
         {% if user.is_authenticated %}
-        <div class="container text-center d-flex align-items-left justify-content-left h-100 col-xs-2">
+        <div class="container text-left d-flex align-items-left justify-content-left h-100">
             <div class="jumbotron style = border-radius:20px">
                 <h5>My Issues</h5>
                 <ul>
-                    <li>Black Lives Matter</li>
-                    <li>Supreme Court</li>
+                    <li class="list-group-item">Black Lives Matter</li>
+                    <li class="list-group-item">Supreme Court</li>
                 </ul>
             </div>
         </div>
         {% endif %}
-        <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100 col-xs-10">
+        <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100">
             <div class="jumbotron style = border-radius:20px">
                 {% if needs_address %}
                 <h3>Find my Government Officials</h3>
@@ -64,8 +63,19 @@
                 {% else %}
                 <h3>My Government Officials</h3>
                 {% if address %}
-                <h4><em>Address: </em>{{ address }}</h4>
-                <a>Change Address</a>
+                    <div id="CurrentAddressBlock">
+                        <h4><em>Address: </em>{{ address }}</h4>
+                        <p id="ChangeAddress" onclick="ChangeAddress()">Change Address</p>
+                    </div>
+                    <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" id="address" size="60" />
+                        </div>
+                        <input type="hidden" name="save_info" value="save_info" id="saveContactInfo" />
+                        <button type="submit" value="Submit" class="btn btn-primary">Search</button>
+                    </form>
                 {% endif %}
                 <div id="contactGrid">
                     {% for level in contacts %}
@@ -96,7 +106,13 @@
             </div>
         </div>
     </div>
-
-
 </body>
 </html>
+<script>
+    var ChangeAddress = function () {
+        var block = document.getElementById("CurrentAddressBlock");
+        block.style.display = "none";
+        var form = document.getElementById("ChangeAddressForm");
+        form.style.display = "block";
+    }
+</script>

@@ -21,7 +21,7 @@
 	grid-column: 2;
 }
 
-#ContactInfo > div > a {
+#ChangeAddress {
 	.color: blue;
 	.font-style: underline;
 }
