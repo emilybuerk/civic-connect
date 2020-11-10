@@ -17,7 +17,16 @@
 	grid-template-columns: 1fr 1fr;
 }
 
-#ContactInfo a {
+#ContactInfo {
+	grid-column: 2;
+}
+
+#ContactInfo > div > a {
 	.color: blue;
 	.font-style: underline;
+}
+
+.row {
+	display: grid;
+	grid-template-columns: 2fr 10fr;
 }
