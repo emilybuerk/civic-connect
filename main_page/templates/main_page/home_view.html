@@ -33,9 +33,20 @@
         {% if user.is_authenticated %}
             <div class="container text-left d-flex align-items-left justify-content-left h-100" id="IssuesBar">
                 <div class="jumbotron style = border-radius:20px">
-                    <h5>My Issues</h5>
-                    <p><strong>Black Lives Matter</strong></p>
-                    <p><strong>Supreme Court</strong></p>
+                    <div id="PersonalIssues">
+                        <h5>Top Issues</h5>
+                        <p><em>Black Lives Matter</em></p>
+                        <p><em>Supreme Court</em></p>
+                        <br />
+                        <p onclick="ShowIssueList()">Update Issues</p>
+                    </div>
+                    <form id="AllIssueForm" action="" method="post">
+                        {% csrf_token %}
+                        <h5>All Issues</h5>
+                        <label for="BLM_check" style="display: inline">Black Lives Matter</label>
+                        <input id="BLM_check" type="checkbox" name="BLM" />
+                        <button type="submit" value="Submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
         {% endif %}
@@ -62,8 +73,8 @@
                 <h3>My Government Officials</h3>
                 {% if address %}
                     <div id="CurrentAddressBlock">
-                        <h4><em>Address: </em>{{ address }}</h4>
-                        <p id="ChangeAddress" onclick="ChangeAddress()">Change Address</p>
+                        <h5><em>Address: </em>{{ address }}</h5>
+                        <p class="update-link" onclick="ChangeAddress()">Change Address</p>
                     </div>
                     <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none">
                         {% csrf_token %}
@@ -112,5 +123,9 @@
         block.style.display = "none";
         var form = document.getElementById("ChangeAddressForm");
         form.style.display = "block";
+    }
+
+    var ShowIssueList = function () {
+
     }
 </script>

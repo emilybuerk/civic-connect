@@ -21,11 +21,11 @@
 	grid-column: 2;
 }
 
-#ChangeAddress {
+.update-link {
 	color: blue;
 }
 
-#ChangeAddress:hover {
+.update-link:hover {
 	color: purple;
 	cursor: pointer;
 }
@@ -39,4 +39,8 @@
 	grid-template-columns: 2fr 10fr;
 	margin-left: 10px;
 	width: 98%
+}
+
+.jumbotron {
+	padding: 2rem;
 }
