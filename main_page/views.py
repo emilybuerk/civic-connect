@@ -5,16 +5,16 @@ from django.template import loader
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from .models import Issue
+
+from .models import Issue, UserProfile, government_officials
+from django.contrib.auth.models import User
 
 # Create your views here.
 
 
-class HomeView(generic.TemplateView):
-    template_name = 'main_page/home_view.html'
-
 class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
+
 
 class ResourceView(generic.ListView):
     template_name = 'main_page/resources.html'

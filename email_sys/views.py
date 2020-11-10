@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import generic
 from .models import Template
-import urllib
 
 
 # Create your views here.
@@ -28,9 +27,7 @@ def prompt(request):
     return render(request, 'email_sys/email_prompt.html', context)
 
 def unique_template_view(request, template_id):
-    context = {'template':Template.objects.get(pk=template_id), 
-        'urlbody': urllib.parse.quote(Template.objects.get(pk=template_id).body),
-        'urltitle':urllib.parse.quote(Template.objects.get(pk=template_id).title)}
+    context = {'template':Template.objects.get(pk=template_id)}
     return render(request, 'email_sys/template_email.html',context)#scratch_email.html')
 
 

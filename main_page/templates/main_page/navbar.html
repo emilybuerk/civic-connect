@@ -21,7 +21,7 @@
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item">
                     {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% provider_login_url 'google' %}">
+                    <a class="nav-link" href="{% url 'main_page:home_page' %}">
                         {{ user.username }}
                         <img class="login-icon" src="{% static 'main_page/user_icon.png' %}" alt="user" />
                     </a>
