@@ -16,3 +16,16 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
+
+.update-link {
+	color: blue;
+}
+
+.update-link:hover {
+	color: purple;
+	cursor: pointer;
+}
+
+.jumbotron {
+	padding: 2rem;
+}

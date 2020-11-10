@@ -16,17 +16,16 @@ class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
 
 
-class ResourceView(generic.ListView):
-    template_name = 'main_page/resources.html'
-    context_object_name = 'issue_list'
+def resources(request):
+    template = loader.get_template('main_page/resources.html')
+    context = {'issue_list': [], 'keyword': False}
+    if 'filter' in request.GET.keys():
+        context['keyword'] = request.GET['filter']
 
-    def get_queryset(self):
-        """ Return a list of all the issues that have resources """
-        issue_list = []
-        for issue in Issue.objects.all():
-            issue_list.append(issue)
-        issue_list.sort(key=lambda x: x.name)
-        return issue_list
+    for issue in Issue.objects.all():
+        context['issue_list'].append(issue)
+    context['issue_list'].sort(key=lambda x: x.name)
+    return HttpResponse(template.render(context, request))
 
 
 def resource_submit_form(request):
@@ -47,15 +46,18 @@ def home(request):
         context['contacts'] = user_profile.government_officials()
         context['address'] = user_profile.address
     except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
-        try:
-            context['contacts'] = government_officials(request.POST['address'])
-            if 'save_info' in request.POST.keys():
-                # Save address in user's profile
-                current_user = User.objects.get(username=request.user)
-                user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
-                user_profile.save()
-        except KeyError:
-            context['needs_address'] = True
+        context['needs_address'] = True
+    try:
+        context['contacts'] = government_officials(request.POST['address'])
+        context['address'] = request.POST['address']
+        if 'save_info' in request.POST.keys():
+            # Save address in user's profile
+            current_user = User.objects.get(username=request.user)
+            user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
+            user_profile.save()
+        context['needs_address'] = False
+    except KeyError:
+        pass
     return HttpResponse(template.render(context, request))
 
 
