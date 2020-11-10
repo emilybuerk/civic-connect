@@ -29,30 +29,9 @@
             </div>
         </div>
     {% endif %}
-    <div class="row">
-        {% if user.is_authenticated %}
-            <div class="container text-left d-flex align-items-left justify-content-left h-100" id="IssuesBar">
-                <div class="jumbotron style = border-radius:20px">
-                    <div id="PersonalIssues">
-                        <h5>Top Issues</h5>
-                        <p><em>Black Lives Matter</em></p>
-                        <p><em>Supreme Court</em></p>
-                        <br />
-                        <p onclick="ShowIssueList()" class="update-link">Update Issues</p>
-                    </div>
-                    <form id="AllIssueForm" action="" method="post" style="display: none">
-                        {% csrf_token %}
-                        <h5>All Issues</h5>
-                        <label for="BLM_check" style="display: inline">Black Lives Matter</label>
-                        <input id="BLM_check" type="checkbox" name="BLM" />
-                        <button type="submit" value="Submit" class="btn btn-primary">Update</button>
-                    </form>
-                </div>
-            </div>
-        {% endif %}
-        <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100">
-            <div class="jumbotron style = border-radius:20px">
-                {% if needs_address %}
+    <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100">
+        <div class="jumbotron style = border-radius:20px">
+            {% if needs_address %}
                 <h3>Find my Government Officials</h3>
                 <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
                 <form action="{% url 'main_page:home_page' %}" method="post">
@@ -69,7 +48,7 @@
                     {% endif %}
                     <button type="submit" value="Submit" class="btn btn-primary">Search</button>
                 </form>
-                {% else %}
+            {% else %}
                 <h3>My Government Officials</h3>
                 {% if address %}
                     <div id="CurrentAddressBlock">
@@ -111,8 +90,7 @@
                     </ul>
                     {% endfor %}
                 </div>
-                {% endif %}
-            </div>
+            {% endif %}
         </div>
     </div>
 </body>
@@ -123,11 +101,5 @@
         block.style.display = "none";
         var form = document.getElementById("ChangeAddressForm");
         form.style.display = "block";
-    }
-
-    var ShowIssueList = function () {
-        var block = document.getElementById("PersonalIssues");
-        block.style.display = "none";
-        var form = document.getElementById("AllIssueForm");
     }
 </script>

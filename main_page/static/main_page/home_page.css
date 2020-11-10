@@ -17,10 +17,6 @@
 	grid-template-columns: 1fr 1fr;
 }
 
-#ContactInfo {
-	grid-column: 2;
-}
-
 .update-link {
 	color: blue;
 }
@@ -28,17 +24,6 @@
 .update-link:hover {
 	color: purple;
 	cursor: pointer;
-}
-
-#IssuesBar {
-	
-}
-
-.row {
-	display: grid;
-	grid-template-columns: 3fr 10fr;
-	margin-left: 10px;
-	width: 98%
 }
 
 .jumbotron {
