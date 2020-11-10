@@ -31,8 +31,6 @@
             <ul>
                 {% for resource in issue.active_resources %}
                     {% if keyword %}
-                        <h2>{{ keyword.lower }}</h2>
-                        <h2>{{ resource.title.lower }}</h2>
                         {% if keyword.lower in resource.title.lower %}
                             <li>
                                 <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
