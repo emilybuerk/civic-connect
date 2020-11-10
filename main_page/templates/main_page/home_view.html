@@ -55,7 +55,7 @@
                         <h5><em>Address: </em>{{ address }}</h5>
                         {% if user.is_authenticated %}
                             <p class="update-link" onclick="ChangeAddress()">Change Address</p>
-                        {% else %}
+                        {% endif %}
                     </div>
                     <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none; margin-bottom: 5px">
                         {% csrf_token %}
