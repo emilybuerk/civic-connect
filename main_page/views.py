@@ -49,6 +49,7 @@ def home(request):
         context['needs_address'] = True
     try:
         context['contacts'] = government_officials(request.POST['address'])
+        context['address'] = request.POST['address']
         if 'save_info' in request.POST.keys():
             # Save address in user's profile
             current_user = User.objects.get(username=request.user)

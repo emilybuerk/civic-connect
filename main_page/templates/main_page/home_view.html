@@ -31,13 +31,13 @@
     {% endif %}
     <div class="row">
         {% if user.is_authenticated %}
-        <div class="container text-left d-flex align-items-left justify-content-left h-100">
-            <div class="jumbotron style = border-radius:20px">
-                <h5>My Issues</h5>
-                <p><strong>Black Lives Matter</strong></p>
-                <p><strong>Supreme Court</strong></p>
+            <div class="container text-left d-flex align-items-left justify-content-left h-100" id="IssuesBar">
+                <div class="jumbotron style = border-radius:20px">
+                    <h5>My Issues</h5>
+                    <p><strong>Black Lives Matter</strong></p>
+                    <p><strong>Supreme Court</strong></p>
+                </div>
             </div>
-        </div>
         {% endif %}
         <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100">
             <div class="jumbotron style = border-radius:20px">
@@ -72,7 +72,7 @@
                             <input type="text" name="address" id="address" size="60" />
                         </div>
                         <input type="hidden" name="save_info" value="save_info" id="saveContactInfo" />
-                        <button type="submit" value="Enter" class="btn btn-primary">Search</button>
+                        <button type="submit" value="Submit" class="btn btn-primary">Enter</button>
                     </form>
                 {% endif %}
                 <div id="contactGrid">

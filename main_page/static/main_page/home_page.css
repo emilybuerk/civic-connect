@@ -22,11 +22,21 @@
 }
 
 #ChangeAddress {
-	.color: blue;
-	.font-style: underline;
+	color: blue;
+}
+
+#ChangeAddress:hover {
+	color: purple;
+	cursor: pointer;
+}
+
+#IssuesBar {
+	
 }
 
 .row {
 	display: grid;
 	grid-template-columns: 2fr 10fr;
+	margin-left: 10px;
+	width: 98%
 }
