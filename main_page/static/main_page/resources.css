@@ -16,5 +16,9 @@ h5 {
 #SearchBar {
 	position: absolute;
 	left: 1em;
-	max-width 40em;
+	max-width 20em;
+}
+
+#SearchBarNav {
+	padding: 5px;
 }
