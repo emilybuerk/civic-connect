@@ -8,22 +8,47 @@
     <title>Resources - Civic Connect</title>
     <link rel="icon" type="image/x-icon" src="{% static 'main_page/favicon.ico' %}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
+    <nav id="SearchBarNav" class="navbar-light bg-light">
+        <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
+        <form action="{% url 'main_page:resource_page' %}" method="get">
+            <div id="SearchBar" class="input-group">
+                <input type="text" class="form-control" name="filter" {% if keyword %}value="{{ keyword }}"{% endif %} placeholder="Search Resources">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </nav>
     {% for issue in issue_list %}
         {% if issue.has_resources %}
             <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
             <ul>
-            {% for resource in issue.active_resources %}
-                <li>
-                    <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
-                    {% if resource.user_resource %}
-                        <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                {% for resource in issue.active_resources %}
+                    {% if keyword %}
+                        {% if keyword.lower in resource.title.lower %}
+                            <li>
+                                <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                                {% if resource.user_resource %}
+                                    <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li>
+                            <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                            {% if resource.user_resource %}
+                                <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                            {% endif %}
+                        </li>
                     {% endif %}
-                </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
         {% endif %}
     {% endfor %}

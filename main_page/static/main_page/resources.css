@@ -12,3 +12,13 @@ h5 {
 #CreateResourceButton {
 	margin-left: 1em;
 }
+
+#SearchBar {
+	position: absolute;
+	right: 0.5em;
+	max-width: 20em;
+}
+
+#SearchBarNav {
+	padding: 5px;
+}
