@@ -16,3 +16,8 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 }
+
+#ContactInfo a {
+	.color: blue;
+	.font-style: underline;
+}
