@@ -57,7 +57,7 @@
                             <p class="update-link" onclick="ChangeAddress()">Change Address</p>
                         {% else %}
                     </div>
-                    <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none">
+                    <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none; margin-bottom: 5px">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="address">Address</label>
