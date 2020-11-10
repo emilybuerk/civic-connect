@@ -17,7 +17,7 @@
     {% block content %}{% endblock %}
 
     {% if user.is_authenticated %}
-    <h2>
+    <h2 class="text-center">
         Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
     </h2>
     {% else %}
@@ -34,10 +34,8 @@
         <div class="container text-left d-flex align-items-left justify-content-left h-100">
             <div class="jumbotron style = border-radius:20px">
                 <h5>My Issues</h5>
-                <ul>
-                    <li class="list-group-item">Black Lives Matter</li>
-                    <li class="list-group-item">Supreme Court</li>
-                </ul>
+                <p><strong>Black Lives Matter</strong></p>
+                <p><strong>Supreme Court</strong></p>
             </div>
         </div>
         {% endif %}
@@ -74,7 +72,7 @@
                             <input type="text" name="address" id="address" size="60" />
                         </div>
                         <input type="hidden" name="save_info" value="save_info" id="saveContactInfo" />
-                        <button type="submit" value="Submit" class="btn btn-primary">Search</button>
+                        <button type="submit" value="Enter" class="btn btn-primary">Search</button>
                     </form>
                 {% endif %}
                 <div id="contactGrid">

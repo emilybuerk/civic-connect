@@ -46,15 +46,17 @@ def home(request):
         context['contacts'] = user_profile.government_officials()
         context['address'] = user_profile.address
     except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
-        try:
-            context['contacts'] = government_officials(request.POST['address'])
-            if 'save_info' in request.POST.keys():
-                # Save address in user's profile
-                current_user = User.objects.get(username=request.user)
-                user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
-                user_profile.save()
-        except KeyError:
-            context['needs_address'] = True
+        context['needs_address'] = True
+    try:
+        context['contacts'] = government_officials(request.POST['address'])
+        if 'save_info' in request.POST.keys():
+            # Save address in user's profile
+            current_user = User.objects.get(username=request.user)
+            user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
+            user_profile.save()
+        context['needs_address'] = False
+    except KeyError:
+        pass
     return HttpResponse(template.render(context, request))
 
 
