@@ -17,11 +17,26 @@
     {% block content %}{% endblock %}
 
 
-    <div class="container text-center d-flex align-items-center justify-content-center h-100">
+    <div class="container text-center d-flex align-items-center justify-content-center h-50">
         <div class="jumbotron style = border-radius:20px">
-            <h1>
-                Welcome {% if user.is_authenticated and user.first_name %}{{ user.first_name }}{% else %}User! Check out our Resources Page{% endif %}!
-            </h1>
+            {% if user.is_authenticated}
+                <h3>
+                    Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
+                </h3>
+            {% else %}
+                <h1>
+                    Welcome User! Check out our Resources Page{% endif %}!
+                </h1>
+            {% endif %}
+        </div>
+    </div>
+    <div class="container text-center d-flex align-items-left justify-content-left h-100">
+        <div class="jumbotron style = border-radius:20px">
+            <h5>My Issues</h5>
+            <ul>
+                <li>Black Lives Matter</li>
+                <li>Supreme Court</li>
+            </ul>
         </div>
     </div>
     <div class="container text-center d-flex align-items-center justify-content-center h-100">
@@ -45,7 +60,8 @@
                 </form>
             {% else %}
                 {% if address %}
-                    <h4><em>Address:</em>{{ address }}<a>Change</a></h4>
+                    <h4><em>Address: </em>{{ address }}</h4>
+                    <a>Change Address</a>
                 {% endif %}
                 <h3>My Government Officials</h3>
                 <div id="contactGrid">
