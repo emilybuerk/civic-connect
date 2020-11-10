@@ -57,12 +57,19 @@
                                         <p style="grid-column: 2">
                                             <strong>{{ contact.name }}</strong><br />
                                             <strong>{{ contact.office }}</strong><br />
-                                            {% if contact.email %}
-                                                <font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>
-                                            {% endif %}
+                                     
                                             {% for line in contact.get_address_lines %}
                                                 {{ line }}<br />
                                             {% endfor %}
+                                            {% if contact.email %}
+                                            <form action="{% url 'email_sys:prompt_page' %}" method="post">
+                                                <!--hidden input, -->
+                                                {% csrf_token %}
+                                                <button class="btn btn-info">{{ contact.email }}</button>
+                                                <input name="email" value="{{ contact.email }}" type="hidden" />
+                                                <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
+                                            </form>
+                                        {% endif %}
                                         </p>
                                     </div>
                                 </li>
