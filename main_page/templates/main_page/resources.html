@@ -12,6 +12,19 @@
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
+    <nav class="navbar-light bg-light">
+        <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
+        <div class="input-group">
+            <form action="{% url 'main_page:resources' %}" method="get">
+                <input type="text" class="form-control" name="filter" placeholder="Search Resources">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </nav>
     {% for issue in issue_list %}
         {% if issue.has_resources %}
             <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
