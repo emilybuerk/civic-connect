@@ -16,17 +16,16 @@ class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
 
 
-class ResourceView(generic.ListView):
-    template_name = 'main_page/resources.html'
-    context_object_name = 'issue_list'
+def resources(request):
+    template = loader.get_template('main_page/resources.html')
+    context = {'issue_list': [], 'keyword': False}
+    if 'filter' in request.GET.keys():
+        context['keyword'] = request.GET['filter']
 
-    def get_queryset(self):
-        """ Return a list of all the issues that have resources """
-        issue_list = []
-        for issue in Issue.objects.all():
-            issue_list.append(issue)
-        issue_list.sort(key=lambda x: x.name)
-        return issue_list
+    for issue in Issue.objects.all():
+        context['issue_list'].append(issue)
+    context['issue_list'].sort(key=lambda x: x.name)
+    return HttpResponse(template.render(context, request))
 
 
 def resource_submit_form(request):

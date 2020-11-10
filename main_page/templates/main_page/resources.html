@@ -14,29 +14,40 @@
     {% include 'main_page/navbar.html' %}
     <nav class="navbar-light bg-light">
         <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
-        <div class="input-group">
-            <form action="{% url 'main_page:resource_page' %}" method="get">
-                <input type="text" class="form-control" name="filter" placeholder="Search Resources">
+        <form action="{% url 'main_page:resource_page' %}" method="get">
+            <div id="SearchBar" class="input-group">
+                <input type="text" class="form-control" name="filter" {% if keyword %}value="{{ keyword }}"{% endif %} placeholder="Search Resources">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="button">
                         <i class="fa fa-search"></i>
                     </button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </nav>
     {% for issue in issue_list %}
         {% if issue.has_resources %}
             <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
             <ul>
-            {% for resource in issue.active_resources %}
-                <li>
-                    <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
-                    {% if resource.user_resource %}
-                        <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                {% for resource in issue.active_resources %}
+                    {% if keyword %}
+                        {% if keyword in resource.title %}
+                        <li>
+                            <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                            {% if resource.user_resource %}
+                            <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                            {% endif %}
+                        </li>
+                        {% endif %}
+                    {% else %}
+                        <li>
+                            <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                            {% if resource.user_resource %}
+                            <h5>- Submitted by {{ resource.get_submitter }}</h5>
+                            {% endif %}
+                        </li>
                     {% endif %}
-                </li>
-            {% endfor %}
+                {% endfor %}
             </ul>
         {% endif %}
     {% endfor %}
