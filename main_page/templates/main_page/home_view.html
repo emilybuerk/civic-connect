@@ -38,9 +38,9 @@
                         <p><em>Black Lives Matter</em></p>
                         <p><em>Supreme Court</em></p>
                         <br />
-                        <p onclick="ShowIssueList()">Update Issues</p>
+                        <p onclick="ShowIssueList()" class="update-link">Update Issues</p>
                     </div>
-                    <form id="AllIssueForm" action="" method="post">
+                    <form id="AllIssueForm" action="" method="post" style="display: none">
                         {% csrf_token %}
                         <h5>All Issues</h5>
                         <label for="BLM_check" style="display: inline">Black Lives Matter</label>
