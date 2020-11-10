@@ -73,8 +73,8 @@ class Resource(models.Model):
         ('P', 'Pending Approval'),
         ('A', 'Approved')
     ]
-    title = models.CharField(max_length=75)
-    url = models.CharField(max_length=100)
+    title = models.CharField(max_length=150)
+    url = models.CharField(max_length=1000)
     issue = models.ForeignKey(Issue, on_delete=models.CASCADE)
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
     submitter = models.ForeignKey(auth_models.User, on_delete=models.CASCADE)
