@@ -19,7 +19,7 @@
 
     <div class="container text-center d-flex align-items-center justify-content-center h-50">
         <div class="jumbotron style = border-radius:20px">
-            {% if user.is_authenticated}
+            {% if user.is_authenticated %}
                 <h3>
                     Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
                 </h3>
