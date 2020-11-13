@@ -17,7 +17,7 @@
         <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
         <form action="{% url 'main_page:resource_page' %}" method="get">
             <div id="SearchBar" class="input-group">
-                <input type="text" class="form-control" name="filter" {% if keyword %}value="{{ keyword }}"{% endif %} placeholder="Search Resources">
+                <input type="text" class="form-control" name="filter" {% if keyword %} value="{{ keyword }}" {% endif %} placeholder="Search Resources">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>
@@ -27,30 +27,18 @@
         </form>
     </nav>
     {% for issue in issue_list %}
-        {% if issue.has_resources %}
-            <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
-            <ul>
-                {% for resource in issue.active_resources %}
-                    {% if keyword %}
-                        {% if keyword.lower in resource.title.lower %}
-                            <li>
-                                <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
-                                {% if resource.user_resource %}
-                                    <h5>- Submitted by {{ resource.get_submitter }}</h5>
-                                {% endif %}
-                            </li>
-                        {% endif %}
-                    {% else %}
-                        <li>
-                            <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
-                            {% if resource.user_resource %}
-                                <h5>- Submitted by {{ resource.get_submitter }}</h5>
-                            {% endif %}
-                        </li>
+        <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
+        <ul>
+            <!-- Template Filters Source: https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
+            {% for resource in resource_library|dict_value:issue.name %}
+                <li>
+                    <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+                    {% if resource.user_resource %}
+                        <h5>- Submitted by {{ resource.get_submitter }}</h5>
                     {% endif %}
-                {% endfor %}
-            </ul>
-        {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
     {% endfor %}
     <a id="CreateResourceButton" href="{% url 'main_page:resource_submit_page' %}" class="btn btn-primary">Add Resource</a>
 </body>
