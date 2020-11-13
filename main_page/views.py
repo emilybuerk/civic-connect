@@ -24,7 +24,7 @@ def resources(request):
     if 'filter' in request.GET.keys():
         keyword = request.GET['filter']
 
-    all_issues = Issue.objects.all()
+    all_issues = list(Issue.objects.all())
     all_issues.sort(key=lambda x: x.name)
     # Check if resource matches search filter
     for issue in all_issues:
