@@ -65,6 +65,26 @@ def resource_submit_form(request):
     return render(request, template_name, context)
 
 
+def update_top_issues(request):
+    try:
+        username = request.POST['username']
+        issue_id = request.POST['issueid']
+        user = User.objects.get(username=username)
+        try:
+            profile = UserProfile.objects.get(user_id=user.id)
+        except UserProfile.DoesNotExist:
+            profile = UserProfile(user_id=user.id, address='')
+            profile.save()
+        issue = Issues.objects.get(id=issue_id)
+        if request['action'] == 'remove':
+            profile.top_issues.remove(issue)
+        else:
+            profile.top_issues.add(issue)
+        return "Success!"
+    except (KeyError, User.DoesNotExist) as err:
+        return "Error! Could not complete action."
+
+
 def home(request):
     template = loader.get_template('main_page/home_view.html')
     context = {}
