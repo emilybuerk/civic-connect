@@ -55,7 +55,7 @@
 <script>
     var UnlikeIssue = function (id, issue_name) {
         alert("Unliking issue #" + id + " - " + issue_name);
-        var header = Document.getElementById(issue_name);
+        var header = document.getElementById(issue_name);
         header.classList.remove("top-issue");
         var star = header.children[0];
         star.classList.remove("fa-star");
@@ -66,7 +66,7 @@
     };
     var LikeIssue = function (id, issue_name) {
         alert("Liking issue #" + id + " - " + issue_name);
-        var header = Document.getElementById(issue_name);
+        var header = document.getElementById(issue_name);
         header.classList.add("top-issue");
         var star = header.children[0];
         star.classList.remove("fa-star-o");
