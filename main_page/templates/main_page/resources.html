@@ -31,9 +31,9 @@
         <!-- Source for tooltips https://getbootstrap.com/docs/4.0/components/tooltips/ -->
         <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">
             {% if issue.name in top_issues %}
-                <i class="fas fa-star" data-toggle="tooltip" data-placement="right" title="Remove from Top Issues"></i>
+                <i class="fa fa-star" data-toggle="tooltip" data-placement="right" title="Remove from Top Issues" onclick="UnlikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
             {% else %}
-                <i class="far fa-star" data-toggle="tooltip" data-placement="right" title="Add to Top Issues"></i>
+                <i class="fa fa-star-o" data-toggle="tooltip" data-placement="right" title="Add to Top Issues" onclick="LikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
             {% endif %}
             {{ issue.name.upper }}
         </div>
@@ -52,3 +52,27 @@
     <a id="CreateResourceButton" href="{% url 'main_page:resource_submit_page' %}" class="btn btn-primary">Add Resource</a>
 </body>
 </html>
+<script>
+    var UnlikeIssue = function (id, issue_name) {
+        alert("Unliking issue #" + id + " - " + issue_name);
+        var header = Document.getElementById(issue_name);
+        header.classList.remove("top-issue");
+        var star = header.children[0];
+        star.classList.remove("fa-star");
+        star.classList.add("fa-star-o");
+        star.onClick = function () {
+            LikeIssue(id, issue_name);
+        }
+    };
+    var LikeIssue = function (id, issue_name) {
+        alert("Liking issue #" + id + " - " + issue_name);
+        var header = Document.getElementById(issue_name);
+        header.classList.add("top-issue");
+        var star = header.children[0];
+        star.classList.remove("fa-star-o");
+        star.classList.add("fa-star");
+        star.onClick = function () {
+            UnlikeIssue(id, issue_name);
+        }
+    };
+</script>
