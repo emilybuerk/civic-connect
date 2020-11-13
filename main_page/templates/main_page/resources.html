@@ -28,7 +28,7 @@
         </form>
     </nav>
     {% for issue in issue_list %}
-        <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
+        <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">{{ issue.name.upper }}</div>
         <ul>
             <!-- Source for template filters https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
             {% for resource in resource_library|dict_value:issue.name %}

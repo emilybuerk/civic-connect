@@ -14,9 +14,11 @@ class TopIssueInline(admin.TabularInline):
 
 admin.site.register(Issue)
 admin.site.register(Resource)
-admin.site.register(UserProfile)
 
 
 class UserProfileAdmin(admin.ModelAdmin):
     inlines = (TopIssueInline,)
     exclude = ('top_issues',)
+
+
+admin.site.register(UserProfile, UserProfileAdmin)

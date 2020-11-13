@@ -20,7 +20,7 @@ def resources(request):
     template = loader.get_template('main_page/resources.html')
 
     # Initialize context
-    context = {'issue_list': [], 'resource_library': {}}
+    context = {'issue_list': [], 'resource_library': {}, 'top_issues': []}
     keyword = ''
     if 'filter' in request.GET.keys():
         keyword = request.GET['filter']
@@ -51,6 +51,8 @@ def resources(request):
         if len(visible_resources) > 0:
             context['issue_list'].append(issue)
             context['resource_library'][issue.name] = visible_resources
+            if issue in top_issues:
+                context['top_issues'].append(issue.name)
     return HttpResponse(template.render(context, request))
 
 
