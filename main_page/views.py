@@ -80,11 +80,11 @@ def update_top_issues(request):
             profile.top_issues.remove(issue)
         else:
             profile.top_issues.add(issue)
-        return "Success!"
+        return HttpResponse("Success!")
     except (KeyError, User.DoesNotExist) as err:
-        return "Error! Could not complete action."
+        return HttpResponse("Error! Could not complete action.")
     except:
-        return "An unexpected error occurred."
+        return HttpResponse("An unexpected error occurred.")
 
 
 def home(request):
