@@ -18,16 +18,31 @@ class LoginView(generic.TemplateView):
 
 def resources(request):
     template = loader.get_template('main_page/resources.html')
+
     # Initialize context
     context = {'issue_list': [], 'resource_library': {}}
     keyword = ''
     if 'filter' in request.GET.keys():
         keyword = request.GET['filter']
 
+    # Get issues in proper order
     all_issues = list(Issue.objects.all())
     all_issues.sort(key=lambda x: x.name)
-    # Check if resource matches search filter
+    try:
+        current_user = User.objects.get(username=request.user)
+        top_issues = list(UserProfile.objects.get(user_id=current_user.id).top_issues)
+        top_issues.sort(key=lambda x: x.name)
+    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+        top_issues = []
+    sorted_issues = []
+    for issue in top_issues:
+        sorted_issues.append(issue)
     for issue in all_issues:
+        if issue not in sorted_issues:
+            sorted_issues.append(issue)
+
+    # Check if resource matches search filter
+    for issue in sorted_issues:
         visible_resources = []
         for resource in issue.active_resources():
             if keyword.lower() in resource.title.lower():
