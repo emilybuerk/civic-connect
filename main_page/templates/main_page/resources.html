@@ -18,7 +18,7 @@
         <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
         <form action="{% url 'main_page:resource_page' %}" method="get">
             <div id="SearchBar" class="input-group">
-                <input type="text" class="form-control" name="filter" {% if keyword %}value="{{ keyword }}"{% endif %} placeholder="Search Resources">
+                <input type="text" class="form-control" name="filter" {% if keyword %} value="{{ keyword }}" {% endif %} placeholder="Search Resources">
                 <div class="input-group-append">
                     <button class="btn btn-secondary" type="submit">
                         <i class="fa fa-search"></i>

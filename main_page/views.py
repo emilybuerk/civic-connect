@@ -30,7 +30,7 @@ def resources(request):
     for issue in all_issues:
         visible_resources = []
         for resource in issue.active_resources():
-            if keyword in resource.title:
+            if keyword.lower() in resource.title.lower():
                 visible_resources.append(resource)
         # Only display issue if it has at least one visible resource
         if len(visible_resources) > 0:
