@@ -10,6 +10,7 @@ https://binary-data.github.io/2015/07/21/django-admin-manytomany-inline-enable-a
 
 class TopIssueInline(admin.TabularInline):
     model = UserProfile.top_issues.through
+    extra = 0
 
 
 admin.site.register(Issue)

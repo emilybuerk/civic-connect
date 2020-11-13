@@ -3,7 +3,7 @@
 	padding: 4px;
 }
 
-.issue-header .top-issue {
+.issue-header.top-issue {
 	background-color: #daa520;
 }
 
