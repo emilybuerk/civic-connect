@@ -30,7 +30,7 @@ def resources(request):
     all_issues.sort(key=lambda x: x.name)
     try:
         current_user = User.objects.get(username=request.user)
-        top_issues = list(UserProfile.objects.get(user_id=current_user.id).top_issues)
+        top_issues = list(UserProfile.objects.get(user_id=current_user.id).top_issues.all())
         top_issues.sort(key=lambda x: x.name)
     except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
         top_issues = []
