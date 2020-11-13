@@ -83,6 +83,8 @@ def update_top_issues(request):
         return "Success!"
     except (KeyError, User.DoesNotExist) as err:
         return "Error! Could not complete action."
+    except:
+        return "An unexpected error occurred"
 
 
 def home(request):

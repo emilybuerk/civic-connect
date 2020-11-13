@@ -72,25 +72,23 @@
         var star = header.children[0];
         star.classList.remove("fa-star");
         star.classList.add("fa-star-o");
-        /*
-        star.onClick = function () {
-            LikeIssue(id, issue_name);
-        }
-        */
-        star.setAttribute("onClick", "LikeIssue(" + id + ", " + issue_name + ")");
+        star.setAttribute("onClick", "LikeIssue(" + id + ", '" + issue_name + "')");
     };
     var LikeIssue = function (id, issue_name) {
+        //Send POST request to update database
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "{% url 'main_page:update_top_issues' %}", true);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.send("username={{ user.username }}&issueid=" + id + "&action=add");
         alert("Liking issue #" + id + " - " + issue_name);
+        alert(ajax.responseText);
+
+        //Update HTML
         var header = document.getElementById(issue_name);
         header.classList.add("top-issue");
         var star = header.children[0];
         star.classList.remove("fa-star-o");
         star.classList.add("fa-star");
-        /*
-        star.onClick = function () {
-            UnlikeIssue(id, issue_name);
-        }
-        */
-        star.setAttribute("onClick", "LikeIssue(" + id + ", " + issue_name + ")");
+        star.setAttribute("onClick", "LikeIssue(" + id + ", '" + issue_name + "')");
     };
 </script>
