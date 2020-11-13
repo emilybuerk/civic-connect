@@ -28,7 +28,15 @@
         </form>
     </nav>
     {% for issue in issue_list %}
-        <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">{{ issue.name.upper }}</div>
+        <!-- Source for tooltips https://getbootstrap.com/docs/4.0/components/tooltips/ -->
+        <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">
+            {% if issue.name in top_issues %}
+                <i class="fas fa-star" data-toggle="tooltip" data-placement="right" title="Remove from Top Issues"></i>
+            {% else %}
+                <i class="far fa-star" data-toggle="tooltip" data-placement="right" title="Add to Top Issues"></i>
+            {% endif %}
+            {{ issue.name.upper }}
+        </div>
         <ul>
             <!-- Source for template filters https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
             {% for resource in resource_library|dict_value:issue.name %}
