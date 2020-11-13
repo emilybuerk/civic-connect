@@ -18,13 +18,24 @@ class LoginView(generic.TemplateView):
 
 def resources(request):
     template = loader.get_template('main_page/resources.html')
-    context = {'issue_list': [], 'keyword': False}
+    # Initialize context
+    context = {'issue_list': [], 'resource_library': {}}
+    keyword = ''
     if 'filter' in request.GET.keys():
-        context['keyword'] = request.GET['filter']
+        keyword = request.GET['filter']
 
-    for issue in Issue.objects.all():
-        context['issue_list'].append(issue)
-    context['issue_list'].sort(key=lambda x: x.name)
+    all_issues = Issue.objects.all()
+    all_issues.sort(key=lambda x: x.name)
+    # Check if resource matches search filter
+    for issue in all_issues:
+        visible_resources = []
+        for resource in issue.active_resources():
+            if keyword in resource.title:
+                visible_resources.append(resource)
+        # Only display issue if it has at least one visible resource
+        if len(visible_resources) > 0:
+            context['issue_list'].append(issue)
+            context['resource_library'][issue.name] = visible_resources
     return HttpResponse(template.render(context, request))
 
 
