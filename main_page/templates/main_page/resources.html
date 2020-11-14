@@ -1,4 +1,5 @@
 ﻿{% load static %}
+{% load dictionary_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
     {% for issue in issue_list %}
         <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
         <ul>
-            <!-- Template Filters Source: https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
+            <!-- Source for template filters https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
             {% for resource in resource_library|dict_value:issue.name %}
                 <li>
                     <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>

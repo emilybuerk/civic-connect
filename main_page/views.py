@@ -24,14 +24,15 @@ def resources(request):
     if 'filter' in request.GET.keys():
         keyword = request.GET['filter']
 
-    all_issues = Issue.objects.all()
+    all_issues = list(Issue.objects.all())
     all_issues.sort(key=lambda x: x.name)
-    # Check active resources against search filter
-    for issue in Issue.objects.all():
+    # Check if resource matches search filter
+    for issue in all_issues:
         visible_resources = []
         for resource in issue.active_resources():
-            if keyword in resource.title:
+            if keyword.lower() in resource.title.lower():
                 visible_resources.append(resource)
+        # Only display issue if it has at least one visible resource
         if len(visible_resources) > 0:
             context['issue_list'].append(issue)
             context['resource_library'][issue.name] = visible_resources
