@@ -23,6 +23,7 @@ def resources(request):
     keyword = ''
     if 'filter' in request.GET.keys():
         keyword = request.GET['filter']
+        context['keyword'] = keyword
 
     all_issues = list(Issue.objects.all())
     all_issues.sort(key=lambda x: x.name)
