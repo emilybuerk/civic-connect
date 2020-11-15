@@ -83,8 +83,8 @@ def update_top_issues(request):
         return HttpResponse("Success!")
     except (KeyError, User.DoesNotExist) as err:
         return HttpResponse("Error! Could not complete action.")
-    except:
-        return HttpResponse("An unexpected error occurred.")
+    except Exception as e:
+        return HttpResponse("An unexpected error occurred.\n" + str(e))
 
 
 def home(request):
