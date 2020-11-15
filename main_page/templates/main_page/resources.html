@@ -57,12 +57,15 @@
 </html>
 <script>
     //Source for JavaScript POST requests https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
+
+    var csrfToken = Cookies.get('csrftoken');
+
     var UnlikeIssue = function (id, issue_name) {
         //Send POST request to update database
         var ajax = new XMLHttpRequest();
         ajax.open("POST", "{% url 'main_page:update_top_issues' %}", true);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        ajax.send("username={{ user.username }}&issueid=" + id + "&action=remove");
+        ajax.send("username={{ user.username }}&issueid=" + id + "&action=remove" + "&csrfmiddlewaretoken=" + csrfToken);
         alert("Unliking issue #" + id + " - " + issue_name);
         ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -85,7 +88,7 @@
         var ajax = new XMLHttpRequest();
         ajax.open("POST", "{% url 'main_page:update_top_issues' %}", true);
         ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        ajax.send("username={{ user.username }}&issueid=" + id + "&action=add");
+        ajax.send("username={{ user.username }}&issueid=" + id + "&action=add" + "&csrfmiddlewaretoken=" + csrfToken);
         alert("Liking issue #" + id + " - " + issue_name);
         ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
