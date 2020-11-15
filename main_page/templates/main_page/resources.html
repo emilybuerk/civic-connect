@@ -88,6 +88,7 @@
         var star = header.children[0];
         star.classList.remove("fa-star");
         star.classList.add("fa-star-o");
+        star.title = "Add to Top Issues";
         star.setAttribute("onClick", "LikeIssue(" + id + ", '" + issue_name + "')");
     };
     var LikeIssue = function (id, issue_name) {
@@ -103,6 +104,7 @@
         var star = header.children[0];
         star.classList.remove("fa-star-o");
         star.classList.add("fa-star");
+        star.title = "Remove from Top Issues";
         star.setAttribute("onClick", "UnlikeIssue(" + id + ", '" + issue_name + "')");
     };
 </script>
