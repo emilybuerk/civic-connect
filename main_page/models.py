@@ -137,6 +137,7 @@ class UserProfile(models.Model):
                                 on_delete=models.CASCADE,
                                 primary_key=True)
     address = models.CharField(max_length=500)
+    top_issues = models.ManyToManyField(Issue)
 
     def __str__(self):
         return self.user.username + " Profile"

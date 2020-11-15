@@ -1,4 +1,5 @@
 ﻿{% load static %}
+{% load socialaccount %}
 {% load dictionary_filters %}
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,17 @@
         </form>
     </nav>
     {% for issue in issue_list %}
-        <div id="{{ issue.id_name }}" class="issue-header">{{ issue.name.upper }}</div>
+        <!-- Source for tooltips https://getbootstrap.com/docs/4.0/components/tooltips/ -->
+        <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">
+            {% if user.is_authenticated %}
+                {% if issue.name in top_issues %}
+                    <i class="fa fa-star" data-toggle="tooltip" data-placement="right" title="Remove from Top Issues" onclick="UnlikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
+                {% else %}
+                    <i class="fa fa-star-o" data-toggle="tooltip" data-placement="right" title="Add to Top Issues" onclick="LikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
+                {% endif %}
+            {% endif %}
+            {{ issue.name.upper }}
+        </div>
         <ul>
             <!-- Source for template filters https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
             {% for resource in resource_library|dict_value:issue.name %}
@@ -44,3 +55,56 @@
     <a id="CreateResourceButton" href="{% url 'main_page:resource_submit_page' %}" class="btn btn-primary">Add Resource</a>
 </body>
 </html>
+<script>
+    //Get Cookie function from Django documentation https://docs.djangoproject.com/en/3.1/ref/csrf/
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrfToken = getCookie('csrftoken');
+
+    //Source for JavaScript POST requests https://www.w3schools.com/xml/ajax_xmlhttprequest_send.asp
+    var UnlikeIssue = function (id, issue_name) {
+        //Send POST request to update database
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "{% url 'main_page:update_top_issues' %}", true);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.send("username={{ user.username }}&issueid=" + id + "&action=remove" + "&csrfmiddlewaretoken=" + csrfToken);
+
+        //Update HTML
+        var header = document.getElementById(issue_name);
+        header.classList.remove("top-issue");
+        var star = header.children[0];
+        star.classList.remove("fa-star");
+        star.classList.add("fa-star-o");
+        star.title = "Add to Top Issues";
+        star.setAttribute("onClick", "LikeIssue(" + id + ", '" + issue_name + "')");
+    };
+    var LikeIssue = function (id, issue_name) {
+        //Send POST request to update database
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "{% url 'main_page:update_top_issues' %}", true);
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ajax.send("username={{ user.username }}&issueid=" + id + "&action=add" + "&csrfmiddlewaretoken=" + csrfToken);
+
+        //Update HTML
+        var header = document.getElementById(issue_name);
+        header.classList.add("top-issue");
+        var star = header.children[0];
+        star.classList.remove("fa-star-o");
+        star.classList.add("fa-star");
+        star.title = "Remove from Top Issues";
+        star.setAttribute("onClick", "UnlikeIssue(" + id + ", '" + issue_name + "')");
+    };
+</script>

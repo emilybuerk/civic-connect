@@ -3,6 +3,10 @@
 	padding: 4px;
 }
 
+.issue-header.top-issue {
+	background-color: #daa520;
+}
+
 h5 {
 	font-weight: normal;
 	font-size: 1em;
