@@ -16,15 +16,20 @@
     {% include 'main_page/navbar.html' %}
     {% block content %}{% endblock %}
 
-
-    <div class="container text-center d-flex align-items-center justify-content-center h-100">
-        <div class="jumbotron style = border-radius:20px">
-            <h1>
-                Welcome {% if user.is_authenticated and user.first_name %}{{ user.first_name }}{% else %}User{% endif %}! Check out our Resources Page!
-            </h1>
+    {% if user.is_authenticated %}
+    <h2 class="text-center">
+        Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
+    </h2>
+    {% else %}
+        <div class="container text-center d-flex align-items-center justify-content-center h-50">
+            <div class="jumbotron style = border-radius:20px">
+                <h1>
+                    Welcome User! Check out our Resources Page!
+                </h1>
+            </div>
         </div>
-    </div>
-    <div class="container text-center d-flex align-items-center justify-content-center h-100">
+    {% endif %}
+    <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100">
         <div class="jumbotron style = border-radius:20px">
             {% if needs_address %}
                 <h3>Find my Government Officials</h3>
@@ -45,6 +50,23 @@
                 </form>
             {% else %}
                 <h3>My Government Officials</h3>
+                {% if address %}
+                    <div id="CurrentAddressBlock">
+                        <h5><em>Address: </em>{{ address }}</h5>
+                        {% if user.is_authenticated %}
+                            <p class="update-link" onclick="ChangeAddress()">Change Address</p>
+                        {% endif %}
+                    </div>
+                    <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none; margin-bottom: 5px">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" name="address" id="address" size="60" />
+                        </div>
+                        <input type="hidden" name="save_info" value="save_info" id="saveContactInfo" />
+                        <button type="submit" value="Submit" class="btn btn-primary">Enter</button>
+                    </form>
+                {% endif %}
                 <div id="contactGrid">
                     {% for level in contacts %}
                         <ul>
@@ -57,12 +79,19 @@
                                         <p style="grid-column: 2">
                                             <strong>{{ contact.name }}</strong><br />
                                             <strong>{{ contact.office }}</strong><br />
-                                            {% if contact.email %}
-                                                <font class="email">{{ contact.email }}<br /></font>
-                                            {% endif %}
+                                     
                                             {% for line in contact.get_address_lines %}
                                                 {{ line }}<br />
                                             {% endfor %}
+                                            {% if contact.email %}
+                                            <form action="{% url 'email_sys:prompt_page' %}" method="post">
+                                                <!--hidden input, -->
+                                                {% csrf_token %}
+                                                <button class="btn btn-info">{{ contact.email }}</button>
+                                                <input name="email" value="{{ contact.email }}" type="hidden" />
+                                                <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
+                                            </form>
+                                        {% endif %}
                                         </p>
                                     </div>
                                 </li>
@@ -73,7 +102,13 @@
             {% endif %}
         </div>
     </div>
-
-
 </body>
 </html>
+<script>
+    var ChangeAddress = function () {
+        var block = document.getElementById("CurrentAddressBlock");
+        block.style.display = "none";
+        var form = document.getElementById("ChangeAddressForm");
+        form.style.display = "block";
+    }
+</script>

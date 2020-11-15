@@ -16,17 +16,45 @@ class LoginView(generic.TemplateView):
     template_name = "main_page/login.html"
 
 
-class ResourceView(generic.ListView):
-    template_name = 'main_page/resources.html'
-    context_object_name = 'issue_list'
+def resources(request):
+    template = loader.get_template('main_page/resources.html')
 
-    def get_queryset(self):
-        """ Return a list of all the issues that have resources """
-        issue_list = []
-        for issue in Issue.objects.all():
-            issue_list.append(issue)
-        issue_list.sort(key=lambda x: x.name)
-        return issue_list
+    # Initialize context
+    context = {'issue_list': [], 'resource_library': {}, 'top_issues': []}
+    keyword = ''
+    if 'filter' in request.GET.keys():
+        keyword = request.GET['filter']
+        context['keyword'] = keyword
+
+    # Get issues in proper order
+    all_issues = list(Issue.objects.all())
+    all_issues.sort(key=lambda x: x.name)
+    try:
+        current_user = User.objects.get(username=request.user)
+        top_issues = list(UserProfile.objects.get(user_id=current_user.id).top_issues.all())
+        top_issues.sort(key=lambda x: x.name)
+    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+        top_issues = []
+    sorted_issues = []
+    for issue in top_issues:
+        sorted_issues.append(issue)
+    for issue in all_issues:
+        if issue not in sorted_issues:
+            sorted_issues.append(issue)
+
+    # Check if resource matches search filter
+    for issue in sorted_issues:
+        visible_resources = []
+        for resource in issue.active_resources():
+            if keyword.lower() in resource.title.lower():
+                visible_resources.append(resource)
+        # Only display issue if it has at least one visible resource
+        if len(visible_resources) > 0:
+            context['issue_list'].append(issue)
+            context['resource_library'][issue.name] = visible_resources
+            if issue in top_issues:
+                context['top_issues'].append(issue.name)
+    return HttpResponse(template.render(context, request))
 
 
 def resource_submit_form(request):
@@ -38,6 +66,28 @@ def resource_submit_form(request):
     return render(request, template_name, context)
 
 
+def update_top_issues(request):
+    try:
+        username = request.POST['username']
+        issue_id = request.POST['issueid']
+        user = User.objects.get(username=username)
+        try:
+            profile = UserProfile.objects.get(user_id=user.id)
+        except UserProfile.DoesNotExist:
+            profile = UserProfile(user_id=user.id, address='')
+            profile.save()
+        issue = Issue.objects.get(id=issue_id)
+        if request.POST['action'] == 'remove':
+            profile.top_issues.remove(issue)
+        else:
+            profile.top_issues.add(issue)
+        return HttpResponse("Success!")
+    except (KeyError, User.DoesNotExist) as err:
+        return HttpResponse("Error! Could not complete action:\n" + str(e))
+    except Exception as e:
+        return HttpResponse("An unexpected error occurred:\n" + str(e))
+
+
 def home(request):
     template = loader.get_template('main_page/home_view.html')
     context = {}
@@ -47,15 +97,18 @@ def home(request):
         context['contacts'] = user_profile.government_officials()
         context['address'] = user_profile.address
     except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
-        try:
-            context['contacts'] = government_officials(request.POST['address'])
-            if 'save_info' in request.POST.keys():
-                # Save address in user's profile
-                current_user = User.objects.get(username=request.user)
-                user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
-                user_profile.save()
-        except KeyError:
-            context['needs_address'] = True
+        context['needs_address'] = True
+    try:
+        context['contacts'] = government_officials(request.POST['address'])
+        context['address'] = request.POST['address']
+        if 'save_info' in request.POST.keys():
+            # Save address in user's profile
+            current_user = User.objects.get(username=request.user)
+            user_profile = UserProfile(user_id=current_user.id, address=request.POST['address'])
+            user_profile.save()
+        context['needs_address'] = False
+    except KeyError:
+        pass
     return HttpResponse(template.render(context, request))
 
 

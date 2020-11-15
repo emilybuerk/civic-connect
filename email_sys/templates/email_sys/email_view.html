@@ -18,10 +18,15 @@
     <form>
 
         <div class = "col-xs-1" align = "center">
-            <div class="form-group" style ="width: 300px;">
-                <!--<label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">Enter your representatives email.</small>-->
+            <div class="form-group" name = "email_field" style ="width: 300px;">
+                <label for="exampleInputEmail1">Email address</label>
+
+                {% if email_text %}
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_text}}">
+                {% else %}
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                {% endif %}
+                <small id="emailHelp" class="form-text text-muted">Enter your representatives email.</small>
                  <!--Also add a dropdown-->
             </div>
             
@@ -39,7 +44,18 @@
 
                 <label for = "emailTextArea">Would you like to use an existing template from the drop down menu or start from scratch?</label>
                 <div id = "flex" class="d-flex justify-content-center">
-                    <a href="mailto:" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+
+                    <!--{% if form.instance.email_field %}
+                        
+                        <a href="mailto:{{form.instance.email_field}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+                    {% elif form.data.email_field %}
+                        
+                        <a href="mailto:{{form.data.email_field}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+                    {% else %}
+                        <a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+                    {% endif %}-->
+                    <a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Select Template
@@ -51,10 +67,17 @@
                         
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 {% for template in drop_down_list %}
-                                  
-                                    <a class="dropdown-item" href="{% url 'email_sys:template_email_page' template.id %}">{{ template.title }}</a>
+                                    <!--<form action="{% url 'email_sys:template_email_page' template.id %}" method="post">
+                                        {% csrf_token %}-->
+                                        <!--<button class="dropdown-item" type="button">{{ template.title }}</button>
+                                        <button class="btn btn-info">{{ template.title }}</button>
+                                        <input name="email" value="{{ email_text }}"  />-->
+
+                                        <!--<input name="email_dropdown" value="{{ email_text }}" type="hidden" />-->
+                                        <a class="dropdown-item" href="{% url 'email_sys:template_email_page' template.id %}">{{ template.title }}</a>
+                                    <!--</form>-->
                                 {% endfor %}
-                                <a class="dropdown-item" href="#">More Templates</a>
+                                <!--<a class="dropdown-item" href="#">More Templates</a>-->
                             </div>
                            
                             <!--<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>-->

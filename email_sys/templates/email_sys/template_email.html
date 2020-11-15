@@ -12,7 +12,7 @@
 <!--<div class = "col-xs-1" align = "center">-->
     <body>
         {% include 'main_page/navbar.html' %}
-   
+        
         {% if template %}
             <style>
                 p    {color:black;}
@@ -33,8 +33,8 @@
         <div class="card" style="width: 50rem;">
             <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">Subject: {{template.title}}</h6>
-            <p class="card-text">{{template.body}}</p>
-            <a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}"><b>Send Email</b></a>
+            <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{template.body}}</pre>
+            <a href="mailto:someone@example.com?subject={{urltitle}}&body={{urlbody}}"><b>Send Email</b></a>
             
             </div>
         </div>
