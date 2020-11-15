@@ -76,7 +76,7 @@ def update_top_issues(request):
             profile = UserProfile(user_id=user.id, address='')
             profile.save()
         issue = Issue.objects.get(id=issue_id)
-        if request['action'] == 'remove':
+        if request.POST['action'] == 'remove':
             profile.top_issues.remove(issue)
         else:
             profile.top_issues.add(issue)
