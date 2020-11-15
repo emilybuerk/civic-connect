@@ -75,7 +75,7 @@ def update_top_issues(request):
         except UserProfile.DoesNotExist:
             profile = UserProfile(user_id=user.id, address='')
             profile.save()
-        issue = Issues.objects.get(id=issue_id)
+        issue = Issue.objects.get(id=issue_id)
         if request['action'] == 'remove':
             profile.top_issues.remove(issue)
         else:
@@ -84,7 +84,7 @@ def update_top_issues(request):
     except (KeyError, User.DoesNotExist) as err:
         return HttpResponse("Error! Could not complete action.")
     except Exception as e:
-        return HttpResponse("An unexpected error occurred.\n" + str(e))
+        return HttpResponse("An unexpected error occurred:\n" + str(e))
 
 
 def home(request):
