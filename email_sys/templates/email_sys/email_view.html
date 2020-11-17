@@ -15,34 +15,83 @@
 <body>
     {% include 'main_page/navbar.html' %}
     {% block content %}{% endblock %}
-    <form>
+    <style>
+        p    {color:black;}
+        p    {margin: 20px;}
+        .flex{
+            margin:50px;
+        }
+        .col-xs-1{
+            margin:50px;
+
+        }
+        .submit_button {
+            padding: 10px 20px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        .title{
+            margin:25px;
+            font-size:30px;
+        }
+        .mail_to{
+            font-size:20px;
+            margin:10px;
+
+        }
+        hr{
+
+            size:30;
+        }
+    </style>
+
 
         <div class = "col-xs-1" align = "center">
-            <div class="form-group" name = "email_field" style ="width: 300px;">
-                <label for="exampleInputEmail1">Email address</label>
 
-                {% if email_text %}
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_text}}">
-                {% else %}
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                {% endif %}
-                <small id="emailHelp" class="form-text text-muted">Enter your representatives email.</small>
-                 <!--Also add a dropdown-->
-            </div>
             
             <div class="form-group" style ="width: 1000px;">
                  <!--Temporarily using resource page, but we'd want a separate template page, which will prefill this page with text. Is there also a way to prefill an email with text?-->
                 <!--<label for = "emailTextArea">Enter your message here or use an <a href="{% url 'main_page:resource_page' %}">exisiting template</a></label>-->
-                <style>
-                    p    {color:black;}
-                    p    {margin: 20px;}
-                    label {font-size:23px;}
-                    .flex{
-                        margin:50px;
-                    }
-                </style>
+             
+                <div class ="title">
+                    <label for = "emailTextArea">Write an email from scratch, or use a template!</label>
+                </div>
 
-                <label for = "emailTextArea">Would you like to use an existing template from the drop down menu or start from scratch?</label>
+                <hr />
+                {% if email_text %}
+                    <div class = "mail_to">
+                        <label for = "emailTextArea">Mailing to: <b>{{email_text}}</b></label>
+                    </div>
+                {% endif %}
+                <form action="{% url 'email_sys:email_success_page' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group" name = "email_field" style ="width: 300px;">
+
+                        <!--<form action="{% url 'email_sys:email_success_page' %}" method="post">
+                            {% csrf_token %}-->
+                            <!--
+                            <label for="exampleInputEmail1">Email address</label>
+            
+                            {% if email_text %}
+                                <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_text}}">
+                            {% else %}
+            
+                            
+                                <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            
+            
+                            {% endif %}
+                            <small id="emailHelp" class="form-text text-muted">Enter your representatives email.</small>-->
+
+                            <!--Also add a dropdown-->
+                            <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>-->
+                            <input name="email" value="{{ email_text }}" type="hidden" />
+
+                            <button type="submit" id ="submit" class="btn btn-primary btn-lg">Send Email From Scratch</button>               
+                        <!--</form>-->
+                    </div>
+
+                </form>
                 <div id = "flex" class="d-flex justify-content-center">
 
                     <!--{% if form.instance.email_field %}
@@ -54,10 +103,12 @@
                     {% else %}
                         <a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
                     {% endif %}-->
-                    <a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+         
+
+                    <!--<a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>-->
 
                     <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-info btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                           Select Template
                         </button>
 
@@ -67,15 +118,16 @@
                         
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                 {% for template in drop_down_list %}
-                                    <!--<form action="{% url 'email_sys:template_email_page' template.id %}" method="post">
-                                        {% csrf_token %}-->
+                                    <form action="{% url 'email_sys:template_email_page' template.id %}" method="post">
+                                        {% csrf_token %}
                                         <!--<button class="dropdown-item" type="button">{{ template.title }}</button>
                                         <button class="btn btn-info">{{ template.title }}</button>
                                         <input name="email" value="{{ email_text }}"  />-->
-
-                                        <!--<input name="email_dropdown" value="{{ email_text }}" type="hidden" />-->
-                                        <a class="dropdown-item" href="{% url 'email_sys:template_email_page' template.id %}">{{ template.title }}</a>
-                                    <!--</form>-->
+                                        
+                                        <input name="email_dropdown" value="{{ email_text }}" type="hidden" />
+                                        <button class="dropdown-item" type = "submit">{{ template.title }}</button>
+                                        <!--<a class="dropdown-item" type = "submit" href="{% url 'email_sys:template_email_page' template.id %}">{{ template.title }}</a>-->
+                                    </form>
                                 {% endfor %}
                                 <!--<a class="dropdown-item" href="#">More Templates</a>-->
                             </div>
@@ -87,8 +139,14 @@
 
 
                       </div>
-                </div>                
+                </div> 
                 <!--<textarea class = "form-control" id = "emailTextArea" rows = "10"></textarea>-->
+                <div class ="title">
+                    <label for = "emailTextArea">Don't know who to email? Find a government official!</label>
+                    <hr />
+                    <a class="btn btn-primary btn-lg" href="{% url 'main_page:home_page' %}" role="button">Find Government Offical</a>
+                </div>
+
             </div>
 
 
@@ -103,7 +161,6 @@
     
         
     
-    </form>
     
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -112,6 +169,8 @@
     <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
 
 </body>
+
 </html>
+{% include 'main_page/footer.html' %}
 
 

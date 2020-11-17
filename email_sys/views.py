@@ -28,6 +28,22 @@ def template_view(request):
     context = {'drop_down_list':Template.objects.all(), 'email_text':email}
     return render(request, 'email_sys/email_view.html',context)
 
+def email_success_view(request):
+    email = ""
+    text_body = ""
+    subject = ""
+    if 'email' in request.POST.keys():
+        email = request.POST['email']
+
+    if 'text_body' in request.POST.keys():
+        text_body = request.POST['text_body']
+    
+    if 'subject' in request.POST.keys():
+        subject = request.POST['subject']
+
+    context = {'email_text':email, 'text_body': text_body, 'subject':subject}
+    return render(request, 'email_sys/email_sent.html', context)
+
 def prompt(request):
     context = {'templates_list': Template.objects.all()}
     return render(request, 'email_sys/email_prompt.html', context)
