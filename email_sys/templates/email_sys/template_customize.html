@@ -8,24 +8,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Resources - Civic Connect</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
+    <link rel="stylesheet" href="{% static 'email_sys/template_customize.css' %}" />
 </head>
 <body>
     {% include 'main_page/navbar.html' %}
     {% block content %}{% endblock %}
 
     <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
-    <h1>Customize {{ template.title }}</h1>
-    <form action="{% url 'email_sys:template_preview_page' template.id %}" method="post">
-        {% csrf_token %}
-        {% for param in template_parameters %}
+    <div id="mainContent">
+        <h1>{{ template.title }}</h1>
+        <form action="{% url 'email_sys:template_preview_page' template.id %}" method="post">
+            {% csrf_token %}
+            {% for param in template_parameters %}
             <div class="form-group">
                 <label for="{{ param }}">{{ param }}</label>
-                <input type="text" name="title" {% if param_values|dict_value:param %}value="{{ param_values|dict_value:param}}"{% endif %} id="{{ param }}" />
+                <input type="text" name="title" {% if param_values|dict_value:param %}value="{{ param_values|dict_value:param}}" {% endif %} id="{{ param }}" />
             </div>
-        {% endfor %}
-        <button type="submit" value="Submit" class="btn btn-primary">Preview</button>
-    </form>
+            {% endfor %}
+            <input type="hidden" name="email_dropdown" value={{ email_address }} />
+            <button type="submit" value="Submit" class="btn btn-primary">Preview</button>
+        </form>
+    </div>
 </body>
 </html>
 {% include 'main_page/footer.html' %}
