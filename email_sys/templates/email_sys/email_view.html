@@ -71,21 +71,21 @@
                             {% csrf_token %}-->
                             <!--
                             <label for="exampleInputEmail1">Email address</label>
-            
+                        -->
                             {% if email_text %}
                                 <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_text}}">
                             {% else %}
-            
+                    
                             
                                 <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             
             
                             {% endif %}
-                            <small id="emailHelp" class="form-text text-muted">Enter your representatives email.</small>-->
+                            <small id="emailHelp" class="form-text text-muted">Enter your representative's email.</small><!--
 
                             <!--Also add a dropdown-->
-                            <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>-->
-                            <input name="email" value="{{ email_text }}" type="hidden" />
+                            <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>
+                            <input name="email" value="{{ email_text }}" type="hidden" />-->
 
                             <button type="submit" id ="submit" class="btn btn-primary btn-lg">Send Email From Scratch</button>               
                         <!--</form>-->
