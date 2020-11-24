@@ -21,15 +21,15 @@
             <ul class="navbar-nav ml-auto flex-nowrap">
                 <li class="nav-item dropdown">
                     {% if user.is_authenticated %}
-                    <div class="nav-link" id="UserMenu">
+                    <!-- Dropdown source https://getbootstrap.com/docs/3.4/examples/navbar/ -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
                         {{ user.username }}
                         <img class="login-icon" src="{% static 'main_page/user_icon.png' %}" alt="user" />
-                        <div class="dropdown-menu" aria-labelledby="UserMenu">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="UserMenu">
+                        <li><a class="dropdown-item" href="#">Log Out</a></li>
+                    </ul>
                     {% else %}
                     <a class="nav-link" href="{% provider_login_url 'google' %}">
                         Login
