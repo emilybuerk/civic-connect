@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +47,8 @@
                 <input name = "subject" value = "{{ template.title }}" type = "hidden"/>
 
             <p></p>
-            <h6 class="card-subtitle mb-2 text-muted">Subject: {{template.title}}<p></p></h6>
-            <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{template.body}}</pre>
+            <h6 class="card-subtitle mb-2 text-muted">Subject: {{ urltitle }}<p></p></h6>
+            <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{ urlbody }}</pre>
             
                
 
