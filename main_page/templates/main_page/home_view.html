@@ -1,4 +1,5 @@
-﻿{% load static %}
+﻿{% load account %}
+{% load static %}
 {% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
@@ -17,9 +18,10 @@
     {% block content %}{% endblock %}
 
     {% if user.is_authenticated %}
-    <h2 class="text-center">
-        Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
-    </h2>
+        <h2 class="text-center">
+            Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
+        </h2>
+        <p>Not {{ user.first_name }}?<a href="{% url 'account_logout' %}">Sign Out</a></p>
     {% else %}
         <div class="container text-center d-flex align-items-center justify-content-center h-50">
             <div class="jumbotron style = border-radius:20px">
