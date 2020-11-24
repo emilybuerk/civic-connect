@@ -22,13 +22,13 @@
         Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
     </h2>
     <!-- Source for POST link https://stackoverflow.com/questions/3915917/make-a-link-use-post-instead-of-get -->
-    <p class="text-center">
-        Not {{ user.first_name }}?
-        <form action="{% url 'account_logout' %}" method="post" class="inline">
-            {% csrf_token %}
+    <form action="{% url 'account_logout' %}" method="post" class="inline">
+        {% csrf_token %}
+        <p class="text-center">
+            Not {{ user.first_name }}?
             <button type="submit" name="submission" value="logout" class="link-button">Sign Out</button>
-        </form>
-    </p>
+        </p>
+    </form>
     {% else %}
     <div class="container text-center d-flex align-items-center justify-content-center h-50">
         <div class="jumbotron style = border-radius:20px">
