@@ -144,7 +144,7 @@ class UserProfile(models.Model):
 
     def has_address(self):
         """ Checks if the user has an associated address """
-        return self.address == ''
+        return self.address != ''
 
     def government_officials(self):
         """ Returns a list of the government officials presiding over the user's address """
