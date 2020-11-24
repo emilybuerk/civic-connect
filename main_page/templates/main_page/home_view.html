@@ -25,6 +25,7 @@
     <p class="text-center">
         Not {{ user.first_name }}?
         <form action="{% url 'account_logout' %}" method="post" class="inline">
+            {% csrf_token %}
             <button type="submit" name="submission" value="logout" class="link-button">Sign Out</button>
         </form>
     </p>
