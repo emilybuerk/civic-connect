@@ -22,7 +22,7 @@
             {% for param in template_parameters %}
             <div class="form-group">
                 <label for="{{ param }}">{{ param }}</label>
-                <input type="text" name="title" {% if param_values|dict_value:param %}value="{{ param_values|dict_value:param}}" {% endif %} id="{{ param }}" />
+                <input type="text" name="TEMP_PARAM{{ param }}" {% if param_values|dict_value:param %}value="{{ param_values|dict_value:param}}" {% endif %} id="{{ param }}" />
             </div>
             {% endfor %}
             <input type="hidden" name="email_dropdown" value={{ email_address }} />
