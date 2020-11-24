@@ -15,12 +15,22 @@
                     <a class="nav-link" href="{% url 'main_page:resource_page' %}">Resources</a>
                 </li>
             </ul>
+<<<<<<< HEAD
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
+=======
+        </div>
+        <!-- Source for Right-Align https://www.codeply.com/go/qhaBrcWp3v -->
+        <div class="collapse navbar-collapse text-right">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+                <li class="nav-item dropdown">
+>>>>>>> parent of 585073e... tweak dropdown
                     {% if user.is_authenticated %}
                     <!-- Dropdown source https://getbootstrap.com/docs/3.4/examples/navbar/ -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>{{ user.username.strip }}<img class="login-icon" src="{% static 'main_page/user_icon.png' %}" alt="user" />
+                        <span class="caret"></span>
+                        {{ user.username }}
+                        <img class="login-icon" src="{% static 'main_page/user_icon.png' %}" alt="user" />
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="UserMenu">
                         <li><a class="dropdown-item" href="#">Log Out</a></li>
