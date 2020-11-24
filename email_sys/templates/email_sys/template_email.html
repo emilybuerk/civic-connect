@@ -35,20 +35,20 @@
 
             <form action="{% url 'email_sys:email_success_page' %}" method="post">
                 {% csrf_token %}
-                {% if email_text %}
-                    <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_text}}">
+                {% if email_address %}
+                    <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_address}}">
                 {% else %}
 
                 
                     <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 
                 {% endif %}
-                <input name="text_body" value="{{ template.body }}" type="hidden" />
+                <input name="text_body" value="{{ email_body }}" type="hidden" />
                 <input name = "subject" value = "{{ template.title }}" type = "hidden"/>
 
             <p></p>
-            <h6 class="card-subtitle mb-2 text-muted">Subject: {{ urltitle }}<p></p></h6>
-            <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{ urlbody }}</pre>
+            <h6 class="card-subtitle mb-2 text-muted">Subject: {{ template.title }}<p></p></h6>
+            <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{ email_body }}</pre>
             
                
 
@@ -59,7 +59,7 @@
 
             
         {% else %}
-            <a href="mailto:{{email_text}}?subject=No Subject&body=No Body">Send email</a>
+            <a href="mailto:{{email_address}}?subject=No Subject&body=No Body">Send email</a>
         {% endif %}
         
         <!--<a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}">Send email</a>-->

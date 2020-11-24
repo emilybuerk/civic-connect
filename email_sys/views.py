@@ -79,15 +79,16 @@ def unique_template_view(request, template_id):
     email = None
     if 'email_dropdown' in request.POST.keys():
         email = request.POST['email_dropdown']
-    body = urllib.parse.quote(Template.objects.get(pk=template_id).body)
+    body = Template.objects.get(pk=template_id).body
     for key in request.POST.keys():
         if 'TEMP_PARAM' in key:
             body = body.replace('[' + key.replace('TEMP_PARAM', '') + ']', request.POST[key])
     context = {
-        'template': Template.objects.get(pk=template_id), 
-        'urlbody': body,
+        'template': Template.objects.get(pk=template_id),
+        'urlbody': urllib.parse.quote(body),
         'urltitle': urllib.parse.quote(Template.objects.get(pk=template_id).title),
-        'email_text': email
+        'email_body': body,
+        'email_address': email
     }
     return render(request, 'email_sys/template_email.html', context)
 
