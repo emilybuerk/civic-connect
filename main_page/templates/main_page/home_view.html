@@ -99,6 +99,7 @@
                                 {% csrf_token %}
                                 <button class="btn btn-info">{{ contact.email }}</button>
                                 <input name="email" value="{{ contact.email }}" type="hidden" />
+                                <input name="official_name" value="{{ contact.name }}" type="hidden" />
                                 <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
                             </form>
                             {% endif %}

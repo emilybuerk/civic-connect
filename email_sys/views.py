@@ -72,6 +72,8 @@ def customize_template(request, template_id):
         context['param_values']['Your Name'] = current_user.first_name + ' ' + current_user.last_name
     except User.DoesNotExist:
         pass
+    if 'official_name' in request.POST.keys() and 'Title of Representative' in context['template_parameters']:
+        context['param_values']['Title of Representative'] = request.POST['official_name']
     return render(request, 'email_sys/template_customize.html', context)
 
 
