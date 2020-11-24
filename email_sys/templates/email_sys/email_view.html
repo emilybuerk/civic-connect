@@ -58,12 +58,6 @@
                 </div>
 
                 <hr />
-                <!--
-                {% if email_text %}
-                    <div class = "mail_to">
-                        <label for = "emailTextArea">Mailing to: <b>{{email_text}}</b></label>
-                    </div>
-                {% endif %}-->
                 <form action="{% url 'email_sys:email_success_page' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group" name = "email_field" style ="width: 300px;">
@@ -78,14 +72,7 @@
                                     <label>Mailing to: <b>{{ email_text }}</b></label>
                                 </div>
                                 <input name="email" value="{{ email_text }}" type="hidden" />
-                            {% else %}
-                    
-                            
-                                <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            
-            
                             {% endif %}
-                            <small id="emailHelp" class="form-text text-muted">Enter your representative's email.</small><!--
 
                             <!--Also add a dropdown-->
                             <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>

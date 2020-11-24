@@ -27,7 +27,9 @@ def template_view(request):
     if 'email' in request.POST.keys():
         email = request.POST['email']
     
-    context = {'drop_down_list':Template.objects.all(), 'email_text':email}
+    context = {'drop_down_list': Template.objects.all(), 'email_text': email}
+    if 'official_name' in request.POST.keys():
+        context['official_name'] = request.POST['official_name']
     return render(request, 'email_sys/email_view.html',context)
 
 
