@@ -51,7 +51,7 @@ def prompt(request):
     return render(request, 'email_sys/email_prompt.html', context)
 
 
-def unique_template_view(request, template_id):
+def customize_template(request, template_id):
     template = Template.objects.get(pk=template_id)
     context = {
         'template_parameters': template.get_parameters(),
