@@ -96,7 +96,7 @@ def home(request):
         user_profile = UserProfile.objects.get(user_id=current_user.id)
         context['contacts'] = user_profile.government_officials()
         context['address'] = user_profile.address
-    except (User.DoesNotExist, UserProfile.DoesNotExist) as err:
+    except (User.DoesNotExist, UserProfile.DoesNotExist, KeyError) as err:
         context['needs_address'] = True
     try:
         context['contacts'] = government_officials(request.POST['address'])
