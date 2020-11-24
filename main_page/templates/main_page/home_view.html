@@ -92,17 +92,16 @@
                                 {% for line in contact.get_address_lines %}
                                 {{ line }}<br />
                                 {% endfor %}
-                                {% if contact.email %}
-                                <form action="{% url 'email_sys:prompt_page' %}" method="post">
-                                    <!--hidden input, -->
-                                    {% csrf_token %}
-                                    <button class="btn btn-info">{{ contact.email }}</button>
-                                    <input name="email" value="{{ contact.email }}" type="hidden" />
-                                    <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
-                                </form>
-                                rm
-                                {% endif %}
                             </p>
+                            {% if contact.email %}
+                            <form action="{% url 'email_sys:prompt_page' %}" method="post">
+                                <!--hidden input, -->
+                                {% csrf_token %}
+                                <button class="btn btn-info">{{ contact.email }}</button>
+                                <input name="email" value="{{ contact.email }}" type="hidden" />
+                                <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
+                            </form>
+                            {% endif %}
                         </div>
                     </li>
                     {% endfor %}
@@ -114,6 +113,7 @@
     </div>
 </body>
 </html>
+{% include 'main_page/footer.html' %}
 <script>
     var ChangeAddress = function () {
         var block = document.getElementById("CurrentAddressBlock");
@@ -122,4 +122,3 @@
         form.style.display = "block";
     }
 </script>
-{% include 'main_page/footer.html' %}
