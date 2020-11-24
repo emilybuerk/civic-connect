@@ -18,89 +18,96 @@
     {% block content %}{% endblock %}
 
     {% if user.is_authenticated %}
-        <h2 class="text-center">
-            Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
-        </h2>
-        <p>Not {{ user.first_name }}?<a href="{% url 'account_logout' %}">Sign Out</a></p>
+    <h2 class="text-center">
+        Welcome {% if user.first_name %}{{ user.first_name }}{% else %}User{% endif %}!
+    </h2>
+    <!-- Source for POST link https://stackoverflow.com/questions/3915917/make-a-link-use-post-instead-of-get -->
+    <p class="text-center">
+        Not {{ user.first_name }}?
+        <form action="{% url 'account_logout' %}" method="post" class="inline">
+            <button type="submit" name="submission" value="logout" class="link-button">Sign Out</button>
+        </form>
+    </p>
     {% else %}
-        <div class="container text-center d-flex align-items-center justify-content-center h-50">
-            <div class="jumbotron style = border-radius:20px">
-                <h1>
-                    Welcome User! Check out our Resources Page!
-                </h1>
-            </div>
+    <div class="container text-center d-flex align-items-center justify-content-center h-50">
+        <div class="jumbotron style = border-radius:20px">
+            <h1>
+                Welcome User! Check out our Resources Page!
+            </h1>
         </div>
+    </div>
     {% endif %}
     <div id="ContactInfo" class="container text-center d-flex align-items-center justify-content-center h-100">
         <div class="jumbotron style = border-radius:20px">
             {% if needs_address %}
-                <h3>Find my Government Officials</h3>
-                <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
-                <form action="{% url 'main_page:home_page' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" name="address" id="address" size="60" />
-                    </div>
-                    {% if user.is_authenticated %}
-                    <div class="form-group">
-                        <label for="saveContactInfo" style="display: inline">Save my contact info</label>
-                        <input type="checkbox" name="save_info" id="saveContactInfo" />
-                    </div>
-                    {% endif %}
-                    <button type="submit" value="Submit" class="btn btn-primary">Search</button>
-                </form>
-            {% else %}
-                <h3>My Government Officials</h3>
-                {% if address %}
-                    <div id="CurrentAddressBlock">
-                        <h5><em>Address: </em>{{ address }}</h5>
-                        {% if user.is_authenticated %}
-                            <p class="update-link" onclick="ChangeAddress()">Change Address</p>
-                        {% endif %}
-                    </div>
-                    <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none; margin-bottom: 5px">
-                        {% csrf_token %}
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" name="address" id="address" size="60" />
-                        </div>
-                        <input type="hidden" name="save_info" value="save_info" id="saveContactInfo" />
-                        <button type="submit" value="Submit" class="btn btn-primary">Enter</button>
-                    </form>
-                {% endif %}
-                <div id="contactGrid">
-                    {% for level in contacts %}
-                        <ul>
-                            {% for contact in level %}
-                                <li class="list-group-item">
-                                    <div class="official-contact-info" style="display: grid; text-align: left">
-                                        {% if contact.photo %}
-                                            <img src="{{ contact.photo }}" height="100" alt="{{ contact.name }}" />
-                                        {% endif %}
-                                        <p style="grid-column: 2">
-                                            <strong>{{ contact.name }}</strong><br />
-                                            <strong>{{ contact.office }}</strong><br />
-                                     
-                                            {% for line in contact.get_address_lines %}
-                                                {{ line }}<br />
-                                            {% endfor %}
-                                            {% if contact.email %}
-                                            <form action="{% url 'email_sys:prompt_page' %}" method="post">
-                                                <!--hidden input, -->
-                                                {% csrf_token %}
-                                                <button class="btn btn-info">{{ contact.email }}</button>
-                                                <input name="email" value="{{ contact.email }}" type="hidden" />
-                                                <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
-                                            </form>
-                                        {% endif %}
-                                        </p>
-                                    </div>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% endfor %}
+            <h3>Find my Government Officials</h3>
+            <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
+            <form action="{% url 'main_page:home_page' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" size="60" />
                 </div>
+                {% if user.is_authenticated %}
+                <div class="form-group">
+                    <label for="saveContactInfo" style="display: inline">Save my contact info</label>
+                    <input type="checkbox" name="save_info" id="saveContactInfo" />
+                </div>
+                {% endif %}
+                <button type="submit" value="Submit" class="btn btn-primary">Search</button>
+            </form>
+            {% else %}
+            <h3>My Government Officials</h3>
+            {% if address %}
+            <div id="CurrentAddressBlock">
+                <h5><em>Address: </em>{{ address }}</h5>
+                {% if user.is_authenticated %}
+                <p class="update-link" onclick="ChangeAddress()">Change Address</p>
+                {% endif %}
+            </div>
+            <form id="ChangeAddressForm" action="{% url 'main_page:home_page' %}" method="post" style="display: none; margin-bottom: 5px">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" name="address" id="address" size="60" />
+                </div>
+                <input type="hidden" name="save_info" value="save_info" id="saveContactInfo" />
+                <button type="submit" value="Submit" class="btn btn-primary">Enter</button>
+            </form>
+            {% endif %}
+            <div id="contactGrid">
+                {% for level in contacts %}
+                <ul>
+                    {% for contact in level %}
+                    <li class="list-group-item">
+                        <div class="official-contact-info" style="display: grid; text-align: left">
+                            {% if contact.photo %}
+                            <img src="{{ contact.photo }}" height="100" alt="{{ contact.name }}" />
+                            {% endif %}
+                            <p style="grid-column: 2">
+                                <strong>{{ contact.name }}</strong><br />
+                                <strong>{{ contact.office }}</strong><br />
+
+                                {% for line in contact.get_address_lines %}
+                                {{ line }}<br />
+                                {% endfor %}
+                                {% if contact.email %}
+                                <form action="{% url 'email_sys:prompt_page' %}" method="post">
+                                    <!--hidden input, -->
+                                    {% csrf_token %}
+                                    <button class="btn btn-info">{{ contact.email }}</button>
+                                    <input name="email" value="{{ contact.email }}" type="hidden" />
+                                    <!--<font class="email"><a href="{% url 'email_sys:prompt_page' %}" class="text-decoration-none">{{ contact.email }}</a><br /></font>-->
+                                </form>
+                                rm
+                                {% endif %}
+                            </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endfor %}
+            </div>
             {% endif %}
         </div>
     </div>
