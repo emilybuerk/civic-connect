@@ -11,12 +11,21 @@
     <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
 </head>
 <body>
-    {% for parameter in template_parameters %}
-        <h2>{{ parameter }}</h2>
-        {% if param_values|dict_value:parameter %}
-            <h3> {{ param_values|dict_value:parameter }}</h3>
-        {% endif %}
-    {% endfor %}
+    {% include 'main_page/navbar.html' %}
+    {% block content %}{% endblock %}
+
+    <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
+    <h1>Customize {{ template.title }}</h1>
+    <form action="{% url 'email_sys:template_preview_page' template.id %}" method="post">
+        {% csrf_token %}
+        {% for param in template_parameters %}
+            <div class="form-group">
+                <label for="{{ param }}">{{ param }}</label>
+                <input type="text" name="title" {% if param_values|dict_value:param %}value="{{ param_values|dict_value:param}}"{% endif %} id="{{ param }}" />
+            </div>
+        {% endfor %}
+        <button type="submit" value="Submit" class="btn btn-primary">Preview</button>
+    </form>
 </body>
 </html>
 {% include 'main_page/footer.html' %}

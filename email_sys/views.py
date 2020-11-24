@@ -8,6 +8,8 @@ from django.views import generic
 from .models import Template
 import urllib
 
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -54,9 +56,17 @@ def prompt(request):
 def customize_template(request, template_id):
     template = Template.objects.get(pk=template_id)
     context = {
+        'template': template,
         'template_parameters': template.get_parameters(),
         'param_values': {}
     }
+    for param in context['template_parameters']:
+        context['param_values'][param] = ''
+    try:
+        current_user = User.objects.get(username=request.user)
+        context['param_values']['Your Name'] = current_user.first_name + ' ' + current_user.last_name
+    except User.DoesNotExist:
+        pass
     return render(request, 'email_sys/template_customize.html', context)
 
 
