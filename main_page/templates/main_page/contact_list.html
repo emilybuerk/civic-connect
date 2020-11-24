@@ -1,4 +1,17 @@
-﻿{% load static %}
+﻿<!--
+    REFERENCES
+    Title: Bootstrap
+    Authors: The Bootstrap Authors
+    Date: 2011-2018
+    URL: https://getbootstrap.com
+    Code Version: 4.0.0
+    Software License: MIT
+
+    Title: Vertical Form Layout
+    Authors:  Tutorial Republic
+    URL: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout
+-->
+{% load static %}
 {% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +28,6 @@
     {% include 'main_page/navbar.html' %}
     {% if needs_address %}
     <h2>Enter Address</h2>
-    <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
     <form action="{% url 'main_page:contact_list' %}" method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -23,10 +35,10 @@
             <input type="text" name="address" id="address" />
         </div>
         {% if user.is_authenticated %}
-            <div class="form-group">
-                <label for="saveContactInfo" style="display: inline">Save my contact info</label>
-                <input type="checkbox" name="save_info" id="saveContactInfo" />
-            </div>
+        <div class="form-group">
+            <label for="saveContactInfo" style="display: inline">Save my contact info</label>
+            <input type="checkbox" name="save_info" id="saveContactInfo" />
+        </div>
         {% endif %}
         <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
     </form>

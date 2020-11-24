@@ -1,4 +1,17 @@
-﻿{% load static %}
+﻿<!--
+    REFERENCES
+    Title: Bootstrap
+    Authors: The Bootstrap Authors
+    Date: 2011-2018
+    URL: https://getbootstrap.com
+    Code Version: 4.0.0
+    Software License: MIT
+
+    Title: Vertical Form Layout
+    Authors:  Tutorial Republic
+    URL: https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout
+-->
+{% load static %}
 {% load dictionary_filters %}
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +27,6 @@
     {% include 'main_page/navbar.html' %}
     {% block content %}{% endblock %}
 
-    <!-- Resource for form https://www.tutorialrepublic.com/codelab.php?topic=bootstrap&file=vertical-form-layout -->
     <div id="mainContent">
         <h1>{{ template.title }}</h1>
         <form action="{% url 'email_sys:template_preview_page' template.id %}" method="post">

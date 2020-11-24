@@ -1,4 +1,13 @@
-﻿{% load static %}
+﻿<!--
+    REFERENCES
+    Title: Bootstrap
+    Authors: The Bootstrap Authors
+    Date: 2011-2018
+    URL: https://getbootstrap.com
+    Code Version: 4.0.0
+    Software License: MIT
+-->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,61 +19,66 @@
     <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
 </head>
 <!--<div class = "col-xs-1" align = "center">-->
-    <body>
-        {% include 'main_page/navbar.html' %}
-        
-        {% if template %}
-            <style>
-                p    {color:black;}
-                p    {margin: 20px;}
+<body>
+    {% include 'main_page/navbar.html' %}
 
-                .card{
-                    margin:20px;
-                }
-            </style>
-            <p>
-                <b style="font-size:30px">Template Preview</b>
-            </p>
-        {% endif %}
+    {% if template %}
+    <style>
+        p {
+            color: black;
+        }
 
-        {% if template %}
-            
-        <div class="card" style="width: 50rem;">
-            <div class="card-body">
+        p {
+            margin: 20px;
+        }
+
+        .card {
+            margin: 20px;
+        }
+    </style>
+    <p>
+        <b style="font-size:30px">Template Preview</b>
+    </p>
+    {% endif %}
+
+    {% if template %}
+
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">Mail To:</h6>
 
             <form action="{% url 'email_sys:email_success_page' %}" method="post">
                 {% csrf_token %}
                 {% if email_address %}
-                    <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value = "{{email_address}}">
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="{{email_address}}">
                 {% else %}
 
-                
-                    <input type="email" name = "email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                
+
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+
                 {% endif %}
                 <input name="text_body" value="{{ email_body }}" type="hidden" />
-                <input name = "subject" value = "{{ template.title }}" type = "hidden"/>
+                <input name="subject" value="{{ template.title }}" type="hidden" />
 
-            <p></p>
-            <h6 class="card-subtitle mb-2 text-muted">Subject: {{ template.title }}<p></p></h6>
-            <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{ email_body }}</pre>
-            
-               
+                <p></p>
+                <h6 class="card-subtitle mb-2 text-muted">Subject: {{ template.title }}<p></p></h6>
+                <pre style="overflow: auto; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; word-wrap: break-word;" class="card-text">{{ email_body }}</pre>
 
-                <button type="submit" id ="submit" class="btn btn-success">Send Email</button>   
+
+
+                <button type="submit" id="submit" class="btn btn-success">Send Email</button>
             </form>
-            </div>
         </div>
+    </div>
 
-            
-        {% else %}
-            <a href="mailto:{{email_address}}?subject=No Subject&body=No Body">Send email</a>
-        {% endif %}
-        
-        <!--<a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}">Send email</a>-->
-        
-    </body>
+
+    {% else %}
+    <a href="mailto:{{email_address}}?subject=No Subject&body=No Body">Send email</a>
+    {% endif %}
+
+    <!--<a href="mailto:someone@example.com?subject={{template.title}}&body={{template.body}}">Send email</a>-->
+
+</body>
 <!--</div>-->
 </html>
 {% include 'main_page/footer.html' %}

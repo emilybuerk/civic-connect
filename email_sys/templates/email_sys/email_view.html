@@ -1,5 +1,20 @@
-﻿
-{% load static %}
+﻿<!--
+    REFERENCES
+    Title: Bootstrap
+    Authors: The Bootstrap Authors
+    Date: 2011-2018
+    URL: https://getbootstrap.com
+    Code Version: 4.0.0
+    Software License: MIT
+
+    Title: JQuery
+    Authors: JS Foundation and other contributers
+    Date: 2020
+    URL: https://code.jquery.com/
+    Code Version: 3.4.1
+    Software License: MIT
+-->
+ad static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,145 +31,153 @@
     {% include 'main_page/navbar.html' %}
     {% block content %}{% endblock %}
     <style>
-        p    {color:black;}
-        p    {margin: 20px;}
-        .flex{
-            margin:50px;
+        p {
+            color: black;
         }
-        .col-xs-1{
-            margin:50px;
 
+        p {
+            margin: 20px;
         }
+
+        .flex {
+            margin: 50px;
+        }
+
+        .col-xs-1 {
+            margin: 50px;
+        }
+
         .submit_button {
             padding: 10px 20px;
             font-size: 20px;
             border-radius: 10px;
         }
-        .title{
-            margin:25px;
-            font-size:30px;
-        }
-        .mail_to{
-            font-size:20px;
-            margin:10px;
 
+        .title {
+            margin: 25px;
+            font-size: 30px;
         }
-        hr{
 
-            size:30;
+        .mail_to {
+            font-size: 20px;
+            margin: 10px;
+        }
+
+        hr {
+            size: 30;
         }
     </style>
 
 
-        <div class = "col-xs-1" align = "center">
+    <div class="col-xs-1" align="center">
 
-            
-            <div class="form-group" style="width: 1000px;">
-                <!--Temporarily using resource page, but we'd want a separate template page, which will prefill this page with text. Is there also a way to prefill an email with text?-->
-                <!--<label for = "emailTextArea">Enter your message here or use an <a href="{% url 'main_page:resource_page' %}">exisiting template</a></label>-->
 
-                <div class="title">
-                    <label for="emailTextArea">Write an email from scratch, or use a template!</label>
-                </div>
+        <div class="form-group" style="width: 1000px;">
+            <!--Temporarily using resource page, but we'd want a separate template page, which will prefill this page with text. Is there also a way to prefill an email with text?-->
+            <!--<label for = "emailTextArea">Enter your message here or use an <a href="{% url 'main_page:resource_page' %}">exisiting template</a></label>-->
 
-                <hr />
-                <form action="{% url 'email_sys:email_success_page' %}" method="post">
-                    {% csrf_token %}
-                    <div class="form-group" name="email_field" style="width: 300px;">
+            <div class="title">
+                <label for="emailTextArea">Write an email from scratch, or use a template!</label>
+            </div>
 
-                        <!--<form action="{% url 'email_sys:email_success_page' %}" method="post">
-                {% csrf_token %}-->
-                        <!--
-                <label for="exampleInputEmail1">Email address</label>
-            -->
-                        {% if email_text %}
-                        <div class="mail_to">
-                            <label>Mailing to: <b>{{ email_text }}</b></label>
-                        </div>
-                        <input name="email" value="{{ email_text }}" type="hidden" />
-                        {% endif %}
+            <hr />
+            <form action="{% url 'email_sys:email_success_page' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group" name="email_field" style="width: 300px;">
 
-                        <!--Also add a dropdown-->
-                        <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>
-            <input name="email" value="{{ email_text }}" type="hidden" />-->
-                        {% if official_name %}
-                            <input name="official_name" value="{{ official_name }}" type="hidden" />
-                        {% endif %}
-                        <button type="submit" id="submit" class="btn btn-primary btn-lg">Send Email From Scratch</button>
-                        <!--</form>-->
+                    <!--<form action="{% url 'email_sys:email_success_page' %}" method="post">
+                    {% csrf_token %}-->
+                    <!--
+                        <label for="exampleInputEmail1">Email address</label>
+                    -->
+                    {% if email_text %}
+                    <div class="mail_to">
+                        <label>Mailing to: <b>{{ email_text }}</b></label>
                     </div>
-
-                </form>
-                <div class="dropdown">
-                    <button class="btn btn-info btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Select Template
-                    </button>
-
-
-                    {% if drop_down_list %}
-                    <!--<ul>-->
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        {% for template in drop_down_list %}
-                        <form action="{% url 'email_sys:template_email_page' template.id %}" method="post">
-                            {% csrf_token %}
-                            <!--<button class="dropdown-item" type="button">{{ template.title }}</button>
-    <button class="btn btn-info">{{ template.title }}</button>
-    <input name="email" value="{{ email_text }}"  />-->
-
-                            <input name="email_dropdown" value="{{ email_text }}" type="hidden" />
-                            {% if official_name %}
-                                <input name="official_name" value="{{ official_name }}" type="hidden" />
-                            {% endif %}
-                            <button class="dropdown-item" type="submit">{{ template.title }}</button>
-                            <!--<a class="dropdown-item" type = "submit" href="{% url 'email_sys:template_email_page' template.id %}2">{{ template.title }}</a>-->
-                        </form>
-                        {% endfor %}
-                        <!--<a class="dropdown-item" href="#">More Templates</a>-->
-                    </div>
-
-                    <!--<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>-->
-                    <!--</ul>-->
+                    <input name="email" value="{{ email_text }}" type="hidden" />
                     {% endif %}
 
-                </div>
-                <div id="flex" class="d-flex justify-content-center">
-
-                    <!--{% if form.instance.email_field %}
-
-            <a href="mailto:{{form.instance.email_field}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
-        {% elif form.data.email_field %}
-
-            <a href="mailto:{{form.data.email_field}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
-        {% else %}
-            <a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
-        {% endif %}-->
-                    <!--<a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>-->
-                    <!--<textarea class = "form-control" id = "emailTextArea" rows = "10"></textarea>-->
-                    <div class="title">
-                        <label for="emailTextArea">Don't know who to email? Find a government official!</label>
-                        <hr />
-                        <a class="btn btn-primary btn-lg" href="{% url 'main_page:home_page' %}" role="button">Find Government Officials</a>
-                    </div>
-
+                    <!--Also add a dropdown-->
+                    <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>
+                    <input name="email" value="{{ email_text }}" type="hidden" />-->
+                    {% if official_name %}
+                    <input name="official_name" value="{{ official_name }}" type="hidden" />
+                    {% endif %}
+                    <button type="submit" id="submit" class="btn btn-primary btn-lg">Send Email From Scratch</button>
+                    <!--</form>-->
                 </div>
 
+            </form>
+            <div class="dropdown">
+                <button class="btn btn-info btn-lg dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Select Template
+                </button>
 
 
+                {% if drop_down_list %}
+                <!--<ul>-->
 
-                <!--<button type="Send" class="btn btn-primary">Submit</button>-->
-                <!--Here, we need to allow user to input href, and also get the form input into the email... Might need to include something.-->
-                <!--How about instead, redirects you, and triggers a fuction/view which takes in a s input the link you put?-->
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    {% for template in drop_down_list %}
+                    <form action="{% url 'email_sys:template_email_page' template.id %}" method="post">
+                        {% csrf_token %}
+                        <!--<button class="dropdown-item" type="button">{{ template.title }}</button>
+                        <button class="btn btn-info">{{ template.title }}</button>
+                        <input name="email" value="{{ email_text }}"  />-->
+
+                        <input name="email_dropdown" value="{{ email_text }}" type="hidden" />
+                        {% if official_name %}
+                        <input name="official_name" value="{{ official_name }}" type="hidden" />
+                        {% endif %}
+                        <button class="dropdown-item" type="submit">{{ template.title }}</button>
+                        <!--<a class="dropdown-item" type = "submit" href="{% url 'email_sys:template_email_page' template.id %}2">{{ template.title }}</a>-->
+                    </form>
+                    {% endfor %}
+                    <!--<a class="dropdown-item" href="#">More Templates</a>-->
+                </div>
+
+                <!--<li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>-->
+                <!--</ul>-->
+                {% endif %}
+
             </div>
-    
-        
-    
-    
+            <div id="flex" class="d-flex justify-content-center">
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
+                <!--{% if form.instance.email_field %}
+
+                    <a href="mailto:{{form.instance.email_field}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+                {% elif form.data.email_field %}
+
+                    <a href="mailto:{{form.data.email_field}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+                {% else %}
+                    <a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>
+                {% endif %}-->
+                <!--<a href="mailto:{{email_text}}" target="_blank" class="btn btn-primary">Send Email From Scratch</a>-->
+                <!--<textarea class = "form-control" id = "emailTextArea" rows = "10"></textarea>-->
+                <div class="title">
+                    <label for="emailTextArea">Don't know who to email? Find a government official!</label>
+                    <hr />
+                    <a class="btn btn-primary btn-lg" href="{% url 'main_page:home_page' %}" role="button">Find Government Officials</a>
+                </div>
+
+            </div>
+
+
+
+
+            <!--<button type="Send" class="btn btn-primary">Submit</button>-->
+            <!--Here, we need to allow user to input href, and also get the form input into the email... Might need to include something.-->
+            <!--How about instead, redirects you, and triggers a fuction/view which takes in a s input the link you put?-->
+        </div>
+
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
 
 </body>
 

@@ -10,17 +10,9 @@ import urllib
 
 from django.contrib.auth.models import User
 
+# Loads all drop-down templates
 
-# Create your views here.
 
-
-# class EmailView(generic.TemplateView):
-#     template_name = "email_sys/email_view.html"
-
-# class From_Template_View(generic.TemplateView):
-#     template_name = 'email_sys/template_email.html'
-
-#Loads all drop-down templates
 def template_view(request):
     
     email = None

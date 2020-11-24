@@ -1,4 +1,27 @@
-﻿{% load static %}
+﻿<!--
+    REFERENCES
+    Title: Bootstrap
+    Authors: The Bootstrap Authors
+    Date: 2011-2018
+    URL: https://getbootstrap.com
+    Code Version: 4.0.0
+    Software License: MIT
+
+    Title: Font Awesome
+    Authors: Dave Gandy
+    URL: http://fontawesome.io
+    Code Version: 4.7.0
+    Software License: MIT
+
+    Title: Bootstrap 4 Text Input with Search Icon
+    Authors: Gungor Budak
+    URL: https://codepen.io/gungorbudak/pen/ooKNpz
+
+    Title: Get Cookie Function
+    Authors: Django Software Foundation
+    URL: https://docs.djangoproject.com/en/3.1/ref/csrf/
+-->
+{% load static %}
 {% load socialaccount %}
 {% load dictionary_filters %}
 <!DOCTYPE html>
@@ -16,7 +39,6 @@
 <body>
     {% include 'main_page/navbar.html' %}
     <nav id="SearchBarNav" class="navbar-light bg-light">
-        <!-- Navbar by Gungor Budak https://codepen.io/gungorbudak/pen/ooKNpz -->
         <form action="{% url 'main_page:resource_page' %}" method="get">
             <div id="SearchBar" class="input-group">
                 <input type="text" class="form-control" name="filter" {% if keyword %} value="{{ keyword }}" {% endif %} placeholder="Search Resources">
@@ -29,34 +51,33 @@
         </form>
     </nav>
     {% for issue in issue_list %}
-        <!-- Source for tooltips https://getbootstrap.com/docs/4.0/components/tooltips/ -->
-        <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">
-            {% if user.is_authenticated %}
-                {% if issue.name in top_issues %}
-                    <i class="fa fa-star" data-toggle="tooltip" data-placement="right" title="Remove from Top Issues" onclick="UnlikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
-                {% else %}
-                    <i class="fa fa-star-o" data-toggle="tooltip" data-placement="right" title="Add to Top Issues" onclick="LikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
-                {% endif %}
+    <!-- Source for tooltips https://getbootstrap.com/docs/4.0/components/tooltips/ -->
+    <div id="{{ issue.id_name }}" class="issue-header {% if issue.name in top_issues %}top-issue{% endif %}">
+        {% if user.is_authenticated %}
+        {% if issue.name in top_issues %}
+        <i class="fa fa-star" data-toggle="tooltip" data-placement="right" title="Remove from Top Issues" onclick="UnlikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
+        {% else %}
+        <i class="fa fa-star-o" data-toggle="tooltip" data-placement="right" title="Add to Top Issues" onclick="LikeIssue({{ issue.id }}, '{{ issue.id_name }}')"></i>
+        {% endif %}
+        {% endif %}
+        {{ issue.name.upper }}
+    </div>
+    <ul>
+        <!-- Source for template filters https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
+        {% for resource in resource_library|dict_value:issue.name %}
+        <li>
+            <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
+            {% if resource.user_resource %}
+            <h5>- Submitted by {{ resource.get_submitter }}</h5>
             {% endif %}
-            {{ issue.name.upper }}
-        </div>
-        <ul>
-            <!-- Source for template filters https://stackoverflow.com/questions/8000022/django-template-how-to-look-up-a-dictionary-value-with-a-variable -->
-            {% for resource in resource_library|dict_value:issue.name %}
-                <li>
-                    <a href="{{ resource.url }}" target="_blank">{{ resource.title }}</a>
-                    {% if resource.user_resource %}
-                        <h5>- Submitted by {{ resource.get_submitter }}</h5>
-                    {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
+        </li>
+        {% endfor %}
+    </ul>
     {% endfor %}
     <a id="CreateResourceButton" href="{% url 'main_page:resource_submit_page' %}" class="btn btn-primary">Add Resource</a>
 </body>
 </html>
 <script>
-    //Get Cookie function from Django documentation https://docs.djangoproject.com/en/3.1/ref/csrf/
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie && document.cookie !== '') {

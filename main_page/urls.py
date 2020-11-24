@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from . import views
 
-app_name = 'main_page'#namespace (is this for the templates??)
+app_name = 'main_page'
 urlpatterns = [
     path('', views.home, name='home_page'),
     path('login/', views.LoginView.as_view(), name='login_page'),

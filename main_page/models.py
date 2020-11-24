@@ -3,7 +3,16 @@ from django.contrib.auth import models as auth_models
 
 import requests
 
-# Source for learning more about models: https://docs.djangoproject.com/en/3.1/topics/db/models/
+"""
+Source for learning more about models: 
+1 - https://docs.djangoproject.com/en/3.1/topics/db/models/
+
+Sources for User Profile Model:
+1 - https://medium.com/@ksarthak4ever/django-custom-user-model-allauth-for-oauth-20c84888c318
+2 - https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/
+
+"""
+
 
 # Parameters for Google Civic Information API query
 CIVIC_INFO_API_PARAMS = {
@@ -123,13 +132,6 @@ def government_officials(address):
         officials_list.append(officials[level])
 
     return officials_list
-
-
-"""
-Sources for User Profile Model:
-1 - https://medium.com/@ksarthak4ever/django-custom-user-model-allauth-for-oauth-20c84888c318
-2 - https://docs.djangoproject.com/en/3.1/topics/db/examples/one_to_one/
-"""
 
 
 class UserProfile(models.Model):

@@ -1,16 +1,25 @@
+﻿<!--
+    REFERENCES
+    Title: Bootstrap
+    Authors: The Bootstrap Authors
+    Date: 2011-2018
+    URL: https://getbootstrap.com
+    Code Version: 4.0.0
+    Software License: MIT
+-->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-.wrapper {
-  margin: 0;
-  position: absolute;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
-}
-</style>
+    <style>
+        .wrapper {
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -22,15 +31,15 @@
     {% include 'main_page/navbar.html' %}
     <h>Would you like to use an existing template from the drop down menu or start from scratch?</h>
     <div class="wrapper">
-    <div class="dropdown show">
-        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</a>
+        <div class="dropdown show">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</a>
 
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            {% for template in templates_list %}
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                {% for template in templates_list %}
                 <a class="dropdown-item" href="#">{{template.title}}</a>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
     </div>
     <a class="btn btn-primary btn-lg" href="{% url 'email_sys:scratch_page' %}" role="button">Start from scratch</a>
 
