@@ -19,12 +19,17 @@
         <!-- Source for Right-Align https://www.codeply.com/go/qhaBrcWp3v -->
         <div class="collapse navbar-collapse text-right">
             <ul class="navbar-nav ml-auto flex-nowrap">
-                <li class="nav-item">
+                <li class="nav-item dropdown">
                     {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'main_page:home_page' %}">
+                    <div class="nav-link" id="UserMenu">
                         {{ user.username }}
                         <img class="login-icon" src="{% static 'main_page/user_icon.png' %}" alt="user" />
-                    </a>
+                        <div class="dropdown-menu" aria-labelledby="UserMenu">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
                     {% else %}
                     <a class="nav-link" href="{% provider_login_url 'google' %}">
                         Login
