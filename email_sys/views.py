@@ -28,6 +28,7 @@ def template_view(request):
     context = {'drop_down_list':Template.objects.all(), 'email_text':email}
     return render(request, 'email_sys/email_view.html',context)
 
+
 def email_success_view(request):
     email = ""
     text_body = ""
@@ -44,19 +45,20 @@ def email_success_view(request):
     context = {'email_text':email, 'text_body': text_body, 'subject':subject}
     return render(request, 'email_sys/email_sent.html', context)
 
+
 def prompt(request):
     context = {'templates_list': Template.objects.all()}
     return render(request, 'email_sys/email_prompt.html', context)
+
 
 def unique_template_view(request, template_id):
     email = None
     if 'email_dropdown' in request.POST.keys():
         email = request.POST['email_dropdown']
-    
-
-    context = {'template':Template.objects.get(pk=template_id), 
+    context = {
+        'template': Template.objects.get(pk=template_id), 
         'urlbody': urllib.parse.quote(Template.objects.get(pk=template_id).body),
-        'urltitle':urllib.parse.quote(Template.objects.get(pk=template_id).title),
+        'urltitle': urllib.parse.quote(Template.objects.get(pk=template_id).title),
         'email_text': email}
     return render(request, 'email_sys/template_email.html',context)#scratch_email.html')
 
