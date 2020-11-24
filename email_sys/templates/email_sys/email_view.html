@@ -78,7 +78,7 @@
                         <!--<a class="btn btn-primary" href="mailto:{{email_text}}" role="button" type = "submit">Link</a>
             <input name="email" value="{{ email_text }}" type="hidden" />-->
                         {% if official_name %}
-                        <input name="official_name" value="{{ official_name }}" type="hidden" />
+                            <input name="official_name" value="{{ official_name }}" type="hidden" />
                         {% endif %}
                         <button type="submit" id="submit" class="btn btn-primary btn-lg">Send Email From Scratch</button>
                         <!--</form>-->
@@ -99,10 +99,13 @@
                         <form action="{% url 'email_sys:template_email_page' template.id %}" method="post">
                             {% csrf_token %}
                             <!--<button class="dropdown-item" type="button">{{ template.title }}</button>
-                <button class="btn btn-info">{{ template.title }}</button>
-                <input name="email" value="{{ email_text }}"  />-->
+    <button class="btn btn-info">{{ template.title }}</button>
+    <input name="email" value="{{ email_text }}"  />-->
 
                             <input name="email_dropdown" value="{{ email_text }}" type="hidden" />
+                            {% if official_name %}
+                                <input name="official_name" value="{{ official_name }}" type="hidden" />
+                            {% endif %}
                             <button class="dropdown-item" type="submit">{{ template.title }}</button>
                             <!--<a class="dropdown-item" type = "submit" href="{% url 'email_sys:template_email_page' template.id %}2">{{ template.title }}</a>-->
                         </form>
