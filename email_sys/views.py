@@ -52,6 +52,15 @@ def prompt(request):
 
 
 def unique_template_view(request, template_id):
+    template = Template.objects.get(pk=template_id)
+    context = {
+        'template_parameters': template.get_parameters(),
+        'param_values': {}
+    }
+    return render(request, 'email_sys/template_customize.html', context)
+
+
+def unique_template_view(request, template_id):
     email = None
     if 'email_dropdown' in request.POST.keys():
         email = request.POST['email_dropdown']

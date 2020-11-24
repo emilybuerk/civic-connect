@@ -1,5 +1,9 @@
 # Create your models here.
 from django.db import models
+import re
+
+
+template_parameter = re.compile(r'\[([^\[\]]*)\]')
 
 
 class Template(models.Model):
@@ -16,3 +20,11 @@ class Template(models.Model):
     def template_body(self):
         """ Returns the templates body"""
         return self.body
+
+    def get_parameters(self):
+        """ Returns a list of all the parameters used in the template """
+        params = []
+        for match in template_parameter.finditer(str(self.body)):
+            if match.group(1) not in params:
+                params.append(match.group(1))
+        return params

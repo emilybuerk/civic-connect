@@ -1,0 +1,22 @@
+﻿{% load static %}
+{% load dictionary_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Resources - Civic Connect</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main_page/resources.css' %}" />
+</head>
+<body>
+    {% for parameter in template_parameters %}
+        <h2>{{ parameter }}</h2>
+        {% if param_values|dict_value:parameter %}
+            <h3> {{ param_values|dict_value:parameter }}</h3>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
+{% include 'main_page/footer.html' %}
